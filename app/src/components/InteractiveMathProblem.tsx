@@ -296,24 +296,24 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
       {/* Layer 3: Collection */}
       <div className="layer collection-layer">
         <div className="collection-container">
-          {/* Left Section - Number 1 Collection */}
+          {/* Left Section - Tens Collection */}
           <div className="collection-section left-collection">
             <div className="pieces-container">
               {state.collectedPieces
-                .slice(0, 2) // First two pieces (from number 1)
+                .filter(piece => piece >= 10) // Tens (10, 20, 30, etc.)
                 .map((piece, index) => (
-                  <span key={`left-${index}`} className="collected-number">{piece}</span>
+                  <span key={`tens-${index}`} className="collected-number">{piece}</span>
                 ))}
             </div>
           </div>
 
-          {/* Right Section - Number 2 Collection */}
+          {/* Right Section - Units Collection */}
           <div className="collection-section right-collection">
             <div className="pieces-container">
               {state.collectedPieces
-                .slice(2, 4) // Last two pieces (from number 2)
+                .filter(piece => piece < 10) // Units (1, 2, 3, etc.)
                 .map((piece, index) => (
-                  <span key={`right-${index}`} className="collected-number">{piece}</span>
+                  <span key={`units-${index}`} className="collected-number">{piece}</span>
                 ))}
             </div>
           </div>
