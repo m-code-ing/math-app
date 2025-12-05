@@ -1,6 +1,6 @@
 import React from 'react';
-import MathProblemStepper from './components/MathProblemStepper';
-import { MathProblem } from './types/MathProblem';
+import InteractiveMathProblem from './components/InteractiveMathProblem';
+import { MathProblem } from './types/InteractiveMath';
 import './App.css';
 
 function App() {
@@ -11,14 +11,14 @@ function App() {
     expectedAnswer: 36
   };
 
-  const handleProblemComplete = (correct: boolean, steps: number) => {
-    console.log(`Problem completed! Correct: ${correct}, Steps taken: ${steps}`);
+  const handleProblemComplete = (correct: boolean, interactions: number) => {
+    console.log(`Problem completed! Correct: ${correct}, Interactions: ${interactions}`);
     // TODO: Save progress to IndexedDB
   };
 
   return (
     <div className="App">
-      <MathProblemStepper 
+      <InteractiveMathProblem 
         problem={sampleProblem} 
         onComplete={handleProblemComplete}
       />
