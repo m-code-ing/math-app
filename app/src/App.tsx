@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import MathProblemStepper from './components/MathProblemStepper';
+import { MathProblem } from './types/MathProblem';
 import './App.css';
 
 function App() {
+  const sampleProblem: MathProblem = {
+    num1: 12,
+    num2: 24,
+    operation: '+',
+    expectedAnswer: 36
+  };
+
+  const handleProblemComplete = (correct: boolean, steps: number) => {
+    console.log(`Problem completed! Correct: ${correct}, Steps taken: ${steps}`);
+    // TODO: Save progress to IndexedDB
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MathProblemStepper 
+        problem={sampleProblem} 
+        onComplete={handleProblemComplete}
+      />
     </div>
   );
 }
