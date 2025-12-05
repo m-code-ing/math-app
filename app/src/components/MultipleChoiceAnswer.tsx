@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MultipleChoiceAnswer.css';
 
 interface MultipleChoiceAnswerProps {
@@ -13,29 +13,64 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
   onSelect
 }) => {
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
-  const [hasSelected, setHasSelected] = useState(false);
+  const [incorrectChoices, setIncorrectChoices] = useState<Set<number>>(new Set());
+  const [correctChoiceSelected, setCorrectChoiceSelected] = useState(false);
+  const [feedbackTimeout, setFeedbackTimeout] = useState<NodeJS.Timeout | null>(null);
+  
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (feedbackTimeout) {
+        clearTimeout(feedbackTimeout);
+      }
+    };
+  }, [feedbackTimeout]);
 
   const handleChoiceClick = (choice: number) => {
-    if (hasSelected) return; // Prevent multiple selections
-
-    setSelectedChoice(choice);
-    setHasSelected(true);
+    // Don't allow clicking on already marked incorrect choices or if correct answer already selected
+    if (incorrectChoices.has(choice) || correctChoiceSelected) {
+      return;
+    }
     
-    // Add a small delay to show the selection before calling onSelect
-    setTimeout(() => {
-      onSelect(choice);
-    }, 500);
+    setSelectedChoice(choice);
+    
+    if (choice === correctAnswer) {
+      // Permanently mark correct answer as selected
+      setCorrectChoiceSelected(true);
+    } else {
+      // If this is an incorrect answer, permanently mark it as incorrect
+      setIncorrectChoices(prev => new Set(prev).add(choice));
+    }
+    
+    // Clear any existing timeout
+    if (feedbackTimeout) {
+      clearTimeout(feedbackTimeout);
+    }
+    
+    // Show feedback briefly, then clear selection (but keep locked states)
+    const timeout = setTimeout(() => {
+      setSelectedChoice(null);
+      setFeedbackTimeout(null);
+    }, 1500);
+    
+    setFeedbackTimeout(timeout);
+    onSelect(choice);
   };
 
   const getChoiceClassName = (choice: number) => {
     let className = 'choice-button';
     
-    if (selectedChoice === choice) {
-      className += choice === correctAnswer ? ' correct' : ' incorrect';
+    // If this choice is permanently marked as incorrect
+    if (incorrectChoices.has(choice)) {
+      className += ' incorrect locked';
     }
-    
-    if (hasSelected && choice !== selectedChoice) {
-      className += ' disabled';
+    // If this is the correct answer and it's been selected
+    else if (choice === correctAnswer && correctChoiceSelected) {
+      className += ' correct locked';
+    }
+    // If this choice is currently selected (for temporary feedback)
+    else if (selectedChoice === choice) {
+      className += choice === correctAnswer ? ' correct' : ' incorrect';
     }
     
     return className;
@@ -49,11 +84,11 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
             key={`choice-${choice}-${index}`}
             className={getChoiceClassName(choice)}
             onClick={() => handleChoiceClick(choice)}
-            disabled={hasSelected}
+            disabled={incorrectChoices.has(choice) || correctChoiceSelected}
             aria-label={`Answer choice ${choice}`}
           >
             <span className="choice-number">{choice}</span>
-            {selectedChoice === choice && (
+            {(selectedChoice === choice || incorrectChoices.has(choice) || (choice === correctAnswer && correctChoiceSelected)) && (
               <div className="selection-indicator">
                 {choice === correctAnswer ? '✓' : '✗'}
               </div>
@@ -62,15 +97,15 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
         ))}
       </div>
       
-      {hasSelected && (
+      {selectedChoice && (
         <div className="feedback-message">
           {selectedChoice === correctAnswer ? (
             <div className="success-feedback">
-              🎉 Excellent! You got it right!
+              ✓ Correct!
             </div>
           ) : (
             <div className="try-again-feedback">
-              😊 Good try! The correct answer is {correctAnswer}
+              ✗ Try again
             </div>
           )}
         </div>

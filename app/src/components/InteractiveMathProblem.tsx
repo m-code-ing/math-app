@@ -41,6 +41,14 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
   });
 
   const [interactionCount, setInteractionCount] = useState(0);
+  
+  // Generate fixed choices once at component mount
+  const [choices] = useState(() => {
+    const correct = problem.expectedAnswer;
+    const incorrect1 = correct + 5; // Always 5 more than correct
+    const incorrect2 = Math.max(1, correct - 3); // Always 3 less than correct (min 1)
+    return [correct, incorrect1, incorrect2];
+  });
 
   const handleNumberClick = (number: number) => {
     setInteractionCount(prev => prev + 1);
@@ -135,32 +143,24 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
     setInteractionCount(prev => prev + 1);
     const isCorrect = selectedAnswer === problem.expectedAnswer;
     
-    setState(prev => ({
-      ...prev,
-      currentPhase: 'complete',
-      selectedAnswer,
-      isCorrect,
-      showFinalChoices: false
-    }));
-    
-    setTimeout(() => {
-      onComplete(isCorrect, interactionCount + 1);
-    }, 2000); // Allow time for celebration animation
+    if (isCorrect) {
+      // Give time to show the green correct state, then complete
+      setTimeout(() => {
+        setState(prev => ({
+          ...prev,
+          currentPhase: 'complete',
+          selectedAnswer,
+          isCorrect,
+          showFinalChoices: false
+        }));
+        
+        // Complete after showing the visual feedback
+        onComplete(isCorrect, interactionCount + 1);
+      }, 2000); // Allow time to see green checkmark
+    }
+    // If incorrect, do nothing - let user try again
   };
 
-  const generateChoices = (): number[] => {
-    const correct = problem.expectedAnswer;
-    const choices = [correct];
-    
-    // Generate plausible incorrect answers
-    const incorrect1 = correct + Math.floor(Math.random() * 10) + 1;
-    const incorrect2 = Math.max(1, correct - Math.floor(Math.random() * 10) - 1);
-    
-    choices.push(incorrect1, incorrect2);
-    
-    // Shuffle the choices
-    return choices.sort(() => Math.random() - 0.5);
-  };
 
   const getCurrentNumberData = () => {
     if (!state.currentNumber) return null;
@@ -198,64 +198,126 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
 
       {/* Layer 2: Number Split */}
       <div className="layer split-layer">
-        {state.currentNumber && numberData && (
-          <div className="split-equation">
-            <button 
-              className={`piece-button tens-piece ${state.splitClickedPieces.tensClicked ? 'clicked' : ''}`}
-              onClick={() => handlePieceClick('tens', numberData.tens)}
-              disabled={numberData.tens === 0 || state.splitClickedPieces.tensClicked}
-            >
-              {numberData.tens * 10}
-              {state.splitClickedPieces.tensClicked && <div className="piece-checkmark">✓</div>}
-            </button>
-            
-            <span className="plus">+</span>
-            
-            <button 
-              className={`piece-button units-piece ${state.splitClickedPieces.unitsClicked ? 'clicked' : ''}`}
-              onClick={() => handlePieceClick('units', numberData.units)}
-              disabled={numberData.units === 0 || state.splitClickedPieces.unitsClicked}
-            >
-              {numberData.units}
-              {state.splitClickedPieces.unitsClicked && <div className="piece-checkmark">✓</div>}
-            </button>
+        <div className="split-container">
+          {/* Left Section - First Number Split */}
+          <div className="split-section left-split">
+            {state.currentPhase !== 'number1' && (
+              <div className="split-equation">
+                <button 
+                  className={`piece-button tens-piece ${state.number1.isDecomposed ? 'collected' : ''}`}
+                  disabled={true}
+                >
+                  {state.number1.tens * 10}
+                </button>
+                
+                <span className="plus">+</span>
+                
+                <button 
+                  className={`piece-button units-piece ${state.number1.isDecomposed ? 'collected' : ''}`}
+                  disabled={true}
+                >
+                  {state.number1.units}
+                </button>
+              </div>
+            )}
+            {state.currentNumber === problem.num1 && (
+              <div className="split-equation">
+                <button 
+                  className={`piece-button tens-piece ${state.splitClickedPieces.tensClicked ? 'clicked' : ''}`}
+                  onClick={() => handlePieceClick('tens', Math.floor(problem.num1 / 10))}
+                  disabled={Math.floor(problem.num1 / 10) === 0 || state.splitClickedPieces.tensClicked}
+                >
+                  {Math.floor(problem.num1 / 10) * 10}
+                  {state.splitClickedPieces.tensClicked && <div className="piece-checkmark">✓</div>}
+                </button>
+                
+                <span className="plus">+</span>
+                
+                <button 
+                  className={`piece-button units-piece ${state.splitClickedPieces.unitsClicked ? 'clicked' : ''}`}
+                  onClick={() => handlePieceClick('units', problem.num1 % 10)}
+                  disabled={problem.num1 % 10 === 0 || state.splitClickedPieces.unitsClicked}
+                >
+                  {problem.num1 % 10}
+                  {state.splitClickedPieces.unitsClicked && <div className="piece-checkmark">✓</div>}
+                </button>
+              </div>
+            )}
           </div>
-        )}
+
+          {/* Right Section - Second Number Split */}
+          <div className="split-section right-split">
+            {state.currentPhase === 'finalAnswer' && (
+              <div className="split-equation">
+                <button 
+                  className={`piece-button tens-piece ${state.number2.isDecomposed ? 'collected' : ''}`}
+                  disabled={true}
+                >
+                  {state.number2.tens * 10}
+                </button>
+                
+                <span className="plus">+</span>
+                
+                <button 
+                  className={`piece-button units-piece ${state.number2.isDecomposed ? 'collected' : ''}`}
+                  disabled={true}
+                >
+                  {state.number2.units}
+                </button>
+              </div>
+            )}
+            {state.currentNumber === problem.num2 && (
+              <div className="split-equation">
+                <button 
+                  className={`piece-button tens-piece ${state.splitClickedPieces.tensClicked ? 'clicked' : ''}`}
+                  onClick={() => handlePieceClick('tens', Math.floor(problem.num2 / 10))}
+                  disabled={Math.floor(problem.num2 / 10) === 0 || state.splitClickedPieces.tensClicked}
+                >
+                  {Math.floor(problem.num2 / 10) * 10}
+                  {state.splitClickedPieces.tensClicked && <div className="piece-checkmark">✓</div>}
+                </button>
+                
+                <span className="plus">+</span>
+                
+                <button 
+                  className={`piece-button units-piece ${state.splitClickedPieces.unitsClicked ? 'clicked' : ''}`}
+                  onClick={() => handlePieceClick('units', problem.num2 % 10)}
+                  disabled={problem.num2 % 10 === 0 || state.splitClickedPieces.unitsClicked}
+                >
+                  {problem.num2 % 10}
+                  {state.splitClickedPieces.unitsClicked && <div className="piece-checkmark">✓</div>}
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Layer 3: Collection */}
       <div className="layer collection-layer">
-        {state.collectedPieces.length > 0 && (
-          <div className="collection-display">
-            {/* Tens Section */}
-            {state.collectedPieces.filter(piece => piece >= 10).length > 0 && (
-              <div className="collection-section tens-section">
-                <span className="section-label">TENS:</span>
-                <div className="pieces-container">
-                  {state.collectedPieces
-                    .filter(piece => piece >= 10)
-                    .map((piece, index) => (
-                      <span key={`tens-${index}`} className="collected-number tens-number">{piece}</span>
-                    ))}
-                </div>
-              </div>
-            )}
-            
-            {/* Units Section */}
-            {state.collectedPieces.filter(piece => piece < 10).length > 0 && (
-              <div className="collection-section units-section">
-                <span className="section-label">UNITS:</span>
-                <div className="pieces-container">
-                  {state.collectedPieces
-                    .filter(piece => piece < 10)
-                    .map((piece, index) => (
-                      <span key={`units-${index}`} className="collected-number units-number">{piece}</span>
-                    ))}
-                </div>
-              </div>
-            )}
+        <div className="collection-container">
+          {/* Left Section - Number 1 Collection */}
+          <div className="collection-section left-collection">
+            <div className="pieces-container">
+              {state.collectedPieces
+                .slice(0, 2) // First two pieces (from number 1)
+                .map((piece, index) => (
+                  <span key={`left-${index}`} className="collected-number">{piece}</span>
+                ))}
+            </div>
           </div>
-        )}
+
+          {/* Right Section - Number 2 Collection */}
+          <div className="collection-section right-collection">
+            <div className="pieces-container">
+              {state.collectedPieces
+                .slice(2, 4) // Last two pieces (from number 2)
+                .map((piece, index) => (
+                  <span key={`right-${index}`} className="collected-number">{piece}</span>
+                ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Layer 4: Final Answer */}
@@ -263,29 +325,13 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
         <div className="layer final-layer">
           <h2>What is the answer?</h2>
           <MultipleChoiceAnswer
-            choices={generateChoices()}
+            choices={choices}
             correctAnswer={problem.expectedAnswer}
             onSelect={handleAnswerSelect}
           />
         </div>
       )}
 
-      {/* Completion Feedback */}
-      {state.currentPhase === 'complete' && (
-        <div className={`completion-feedback ${state.isCorrect ? 'success' : 'incorrect'}`}>
-          {state.isCorrect ? (
-            <div className="success-message">
-              <h2>🎉 Excellent work!</h2>
-              <p>You got it right! {problem.num1} + {problem.num2} = {problem.expectedAnswer}</p>
-            </div>
-          ) : (
-            <div className="try-again-message">
-              <h2>😊 Good try!</h2>
-              <p>The answer is {problem.expectedAnswer}. Let's try another problem!</p>
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 };

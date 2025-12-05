@@ -53,10 +53,36 @@
   animation: correctPulse 0.6s ease-out;
 }
 
+.choice-button.correct.locked {
+  background: linear-gradient(135deg, #66bb6a, #4caf50);
+  opacity: 0.9;
+  cursor: not-allowed;
+  animation: none;
+  box-shadow: 0 4px 8px rgba(102, 187, 106, 0.3);
+}
+
+.choice-button.correct.locked:hover {
+  transform: none;
+  box-shadow: 0 4px 8px rgba(102, 187, 106, 0.3);
+}
+
 .choice-button.incorrect {
   background: linear-gradient(135deg, #f44336, #d32f2f);
   box-shadow: 0 6px 12px rgba(244, 67, 54, 0.4);
   animation: incorrectShake 0.6s ease-out;
+}
+
+.choice-button.incorrect.locked {
+  background: linear-gradient(135deg, #e57373, #ef5350);
+  opacity: 0.7;
+  cursor: not-allowed;
+  animation: none;
+  box-shadow: 0 4px 8px rgba(229, 115, 115, 0.3);
+}
+
+.choice-button.incorrect.locked:hover {
+  transform: none;
+  box-shadow: 0 4px 8px rgba(229, 115, 115, 0.3);
 }
 
 .choice-button.disabled {
@@ -99,23 +125,24 @@
 
 .feedback-message {
   text-align: center;
-  padding: 20px;
-  border-radius: 15px;
-  font-size: 1.3em;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1em;
   font-weight: bold;
-  animation: feedbackSlideIn 0.5s ease-out;
+  margin-top: 15px;
+  animation: feedbackSlideIn 0.3s ease-out;
 }
 
 .success-feedback {
-  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  background: rgba(76, 175, 80, 0.1);
   color: #2e7d32;
-  border: 2px solid #4caf50;
+  border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
 .try-again-feedback {
-  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  background: rgba(255, 152, 0, 0.1);
   color: #ef6c00;
-  border: 2px solid #ff9800;
+  border: 1px solid rgba(255, 152, 0, 0.3);
 }
 
 @keyframes correctPulse {
