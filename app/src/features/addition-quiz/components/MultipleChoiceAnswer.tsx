@@ -6,11 +6,13 @@ import CheckIcon from '@mui/icons-material/Check';
 interface MultipleChoiceAnswerProps {
   correctAnswer: number;
   onAnswerSelected: (isCorrect: boolean) => void;
+  maxValue?: number;
 }
 
 const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
   correctAnswer,
   onAnswerSelected,
+  maxValue,
 }) => {
   const [choices, setChoices] = useState<number[]>([]);
   const [wrongAnswers, setWrongAnswers] = useState<Set<number>>(new Set());
@@ -22,7 +24,8 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
       while (options.size < 3) {
         const offset = Math.floor(Math.random() * 20) - 10;
         const choice = correctAnswer + offset;
-        if (choice > 0 && choice !== correctAnswer) {
+        // Ensure choice is positive and within maxValue if specified
+        if (choice > 0 && choice !== correctAnswer && (!maxValue || choice <= maxValue)) {
           options.add(choice);
         }
       }
@@ -35,7 +38,7 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
       return arr;
     };
     setChoices(generateChoices());
-  }, [correctAnswer]);
+  }, [correctAnswer, maxValue]);
 
   const handleAnswerClick = (answer: number) => {
     const isCorrect = answer === correctAnswer;

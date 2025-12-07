@@ -18,3 +18,4 @@ export { QuestionGenerationService } from './QuestionGenerationService';
 
 // Export types
 export * from './types';
+export type { DifficultyLevel } from './QuestionGenerationService';

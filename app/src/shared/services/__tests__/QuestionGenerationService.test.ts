@@ -18,13 +18,47 @@ describe('QuestionGenerationService', () => {
       expect(problems).toHaveLength(20);
     });
 
-    it('should generate problems with numbers between 10 and 49', () => {
-      const problems = service.generateAdditionProblems(10);
-      problems.forEach(problem => {
-        expect(problem.num1).toBeGreaterThanOrEqual(10);
-        expect(problem.num1).toBeLessThanOrEqual(49);
-        expect(problem.num2).toBeGreaterThanOrEqual(10);
-        expect(problem.num2).toBeLessThanOrEqual(49);
+    describe('easy difficulty', () => {
+      it('should generate problems with sum up to 10', () => {
+        const problems = service.generateAdditionProblems(10, 'easy');
+        problems.forEach(problem => {
+          expect(problem.num1 + problem.num2).toBeLessThanOrEqual(10);
+          expect(problem.num1).toBeGreaterThanOrEqual(1);
+          expect(problem.num2).toBeGreaterThanOrEqual(1);
+        });
+      });
+    });
+
+    describe('medium difficulty', () => {
+      it('should generate problems with sum up to 20', () => {
+        const problems = service.generateAdditionProblems(10, 'medium');
+        problems.forEach(problem => {
+          expect(problem.num1 + problem.num2).toBeLessThanOrEqual(20);
+          expect(problem.num1).toBeGreaterThanOrEqual(1);
+          expect(problem.num2).toBeGreaterThanOrEqual(1);
+        });
+      });
+    });
+
+    describe('hard difficulty', () => {
+      it('should generate problems with sum up to 50', () => {
+        const problems = service.generateAdditionProblems(10, 'hard');
+        problems.forEach(problem => {
+          expect(problem.num1 + problem.num2).toBeLessThanOrEqual(50);
+          expect(problem.num1).toBeGreaterThanOrEqual(1);
+          expect(problem.num2).toBeGreaterThanOrEqual(1);
+        });
+      });
+    });
+
+    describe('expert difficulty', () => {
+      it('should generate problems with sum up to 100', () => {
+        const problems = service.generateAdditionProblems(10, 'expert');
+        problems.forEach(problem => {
+          expect(problem.num1 + problem.num2).toBeLessThanOrEqual(100);
+          expect(problem.num1).toBeGreaterThanOrEqual(1);
+          expect(problem.num2).toBeGreaterThanOrEqual(1);
+        });
       });
     });
 
