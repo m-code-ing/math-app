@@ -12,7 +12,6 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
 }) => {
   const [choices, setChoices] = useState<number[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [showFeedback, setShowFeedback] = useState(false);
 
   useEffect(() => {
     const generateChoices = () => {
@@ -31,7 +30,6 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
 
   const handleAnswerClick = (answer: number) => {
     setSelectedAnswer(answer);
-    setShowFeedback(true);
     const isCorrect = answer === correctAnswer;
     setTimeout(() => onAnswerSelected(isCorrect), 1000);
   };
@@ -46,20 +44,18 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
           <Button
             key={choice}
             onClick={() => handleAnswerClick(choice)}
-            disabled={showFeedback}
+            disabled={selectedAnswer !== null}
             variant="contained"
             sx={{
               minHeight: 60,
               fontSize: '1.5rem',
-              bgcolor: showFeedback
+              bgcolor: selectedAnswer !== null && choice === selectedAnswer
                 ? choice === correctAnswer
                   ? 'success.main'
-                  : choice === selectedAnswer
-                  ? 'error.main'
-                  : 'grey.300'
+                  : 'error.main'
                 : 'primary.main',
               '&:hover': {
-                bgcolor: showFeedback ? undefined : 'primary.dark',
+                bgcolor: selectedAnswer !== null ? undefined : 'primary.dark',
               },
             }}
           >
