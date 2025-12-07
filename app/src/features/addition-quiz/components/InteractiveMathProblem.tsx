@@ -173,7 +173,14 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
           <Typography variant="subtitle2" color="text.secondary" gutterBottom>
             Visual Helper
           </Typography>
-          <Box sx={{ display: 'flex', gap: 4, justifyContent: 'center', alignItems: 'center', mt: 2 }}>
+          <Box sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', sm: 'row' },
+            gap: { xs: 2, sm: 4 }, 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            mt: 2 
+          }}>
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="body2" sx={{ mb: 1 }}>{problem.num1}</Typography>
               <TenFrame filledCount={problem.num1} />
