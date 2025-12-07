@@ -177,6 +177,12 @@ describe('Complete Problem Workflow', () => {
 - `npm run test:coverage` - Run with coverage report
 - `npm run test:ci` - Run all tests once (CI mode)
 
+**Test Output Management**
+- Test outputs are saved to `.test-outputs/` directory with timestamps
+- This directory is gitignored (never committed)
+- Format: `test-output-YYYYMMDD-HHMMSS.txt`
+- Command: `npm test -- [options] > ../.test-outputs/test-output-$(date +%Y%m%d-%H%M%S).txt 2>&1`
+
 **Debugging**
 - Use `test.only()` to focus on specific tests
 - Add `console.log()` for debugging (remove before commit)

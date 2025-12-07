@@ -7,21 +7,12 @@ describe('QuizService', () => {
   let storage: StorageService;
 
   beforeEach(() => {
-    // Manually remove all app-specific keys instead of relying on localStorage.clear()
-    localStorage.removeItem('math-app:session-history');
-    localStorage.removeItem('math-app:user-stats');
-    localStorage.removeItem('math-app:preferences');
+    localStorage.clear();
     storage = new StorageService();
     service = new QuizService(storage);
   });
 
   afterEach(() => {
-    localStorage.removeItem('math-app:session-history');
-    localStorage.removeItem('math-app:user-stats');
-    localStorage.removeItem('math-app:preferences');
-  });
-
-  afterAll(() => {
     localStorage.clear();
   });
 
