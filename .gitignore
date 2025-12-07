@@ -53,3 +53,5 @@ Thumbs.db
 
 # Test outputs
 .test-outputs/
+test-results.json
+**/test-results.json
