@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import { QuizSession } from './components/QuizSession';
 import { TenFrameQuiz } from './components/TenFrameQuiz';
 import { QuizModeSelector } from './components/QuizModeSelector';
 
-type QuizMode = 'selector' | 'addition' | 'recognition' | 'make10';
+function AppContent() {
+  const navigate = useNavigate();
 
-function App() {
-  const [quizMode, setQuizMode] = useState<QuizMode>('selector');
+  const handleModeSelect = (mode: 'addition' | 'recognition' | 'make10') => {
+    navigate(`/${mode}`);
+  };
 
   return (
+    <Routes>
+      <Route path="/" element={<QuizModeSelector onSelect={handleModeSelect} />} />
+      <Route path="/addition" element={<QuizSession />} />
+      <Route path="/recognition" element={<TenFrameQuiz mode="recognition" />} />
+      <Route path="/make10" element={<TenFrameQuiz mode="make10" />} />
+    </Routes>
+  );
+}
+
+function App() {
+  return (
     <div className="App">
-      {quizMode === 'selector' && <QuizModeSelector onSelect={setQuizMode} />}
-      {quizMode === 'addition' && <QuizSession />}
-      {quizMode === 'recognition' && <TenFrameQuiz mode="recognition" />}
-      {quizMode === 'make10' && <TenFrameQuiz mode="make10" />}
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
     </div>
   );
 }
