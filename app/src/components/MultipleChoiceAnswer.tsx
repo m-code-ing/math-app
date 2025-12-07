@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface MultipleChoiceAnswerProps {
   correctAnswer: number;
@@ -11,7 +12,7 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
   onAnswerSelected,
 }) => {
   const [choices, setChoices] = useState<number[]>([]);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [wrongAnswers, setWrongAnswers] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const generateChoices = () => {
@@ -29,9 +30,13 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
   }, [correctAnswer]);
 
   const handleAnswerClick = (answer: number) => {
-    setSelectedAnswer(answer);
     const isCorrect = answer === correctAnswer;
-    setTimeout(() => onAnswerSelected(isCorrect), 1000);
+    
+    if (isCorrect) {
+      setTimeout(() => onAnswerSelected(true), 500);
+    } else {
+      setWrongAnswers(prev => new Set(prev).add(answer));
+    }
   };
 
   return (
@@ -40,28 +45,35 @@ const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
         What's the answer?
       </Typography>
       <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, maxWidth: 400 }}>
-        {choices.map((choice) => (
-          <Button
-            key={choice}
-            onClick={() => handleAnswerClick(choice)}
-            disabled={selectedAnswer !== null}
-            variant="contained"
-            sx={{
-              minHeight: 60,
-              fontSize: '1.5rem',
-              bgcolor: selectedAnswer !== null && choice === selectedAnswer
-                ? choice === correctAnswer
-                  ? 'success.main'
-                  : 'error.main'
-                : 'primary.main',
-              '&:hover': {
-                bgcolor: selectedAnswer !== null ? undefined : 'primary.dark',
-              },
-            }}
-          >
-            {choice}
-          </Button>
-        ))}
+        {choices.map((choice) => {
+          const isWrong = wrongAnswers.has(choice);
+          return (
+            <Button
+              key={choice}
+              onClick={() => handleAnswerClick(choice)}
+              disabled={isWrong}
+              variant="contained"
+              sx={{
+                minHeight: 60,
+                fontSize: '1.5rem',
+                position: 'relative',
+                bgcolor: isWrong ? 'error.main' : 'primary.main',
+                '&:hover': {
+                  bgcolor: isWrong ? 'error.main' : 'primary.dark',
+                },
+                '&.Mui-disabled': {
+                  bgcolor: 'error.main',
+                  color: 'white',
+                },
+              }}
+            >
+              {choice}
+              {isWrong && (
+                <CloseIcon sx={{ position: 'absolute', top: 5, right: 5, fontSize: 20 }} />
+              )}
+            </Button>
+          );
+        })}
       </Box>
     </Box>
   );

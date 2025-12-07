@@ -19,10 +19,10 @@ describe('MultipleChoiceAnswer', () => {
     
     await waitFor(() => {
       expect(onAnswerSelected).toHaveBeenCalledWith(true);
-    }, { timeout: 1500 });
+    }, { timeout: 1000 });
   });
 
-  it('calls onAnswerSelected with false when wrong answer clicked', async () => {
+  it('does not call onAnswerSelected when wrong answer clicked', async () => {
     const onAnswerSelected = jest.fn();
     render(<MultipleChoiceAnswer correctAnswer={50} onAnswerSelected={onAnswerSelected} />);
     
@@ -31,7 +31,21 @@ describe('MultipleChoiceAnswer', () => {
     if (wrongButton) await userEvent.click(wrongButton);
     
     await waitFor(() => {
-      expect(onAnswerSelected).toHaveBeenCalledWith(false);
-    }, { timeout: 1500 });
+      expect(onAnswerSelected).not.toHaveBeenCalled();
+    }, { timeout: 1000 });
+  });
+
+  it('marks wrong answer with X and disables it', async () => {
+    render(<MultipleChoiceAnswer correctAnswer={50} onAnswerSelected={() => {}} />);
+    
+    const buttons = screen.getAllByRole('button');
+    const wrongButton = buttons.find(btn => btn.textContent !== '50');
+    
+    if (wrongButton) {
+      await userEvent.click(wrongButton);
+      await waitFor(() => {
+        expect(wrongButton).toBeDisabled();
+      });
+    }
   });
 });

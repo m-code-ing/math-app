@@ -1,0 +1,916 @@
+
+> app@0.1.0 test
+> react-scripts test --watchAll=false
+
+(node:66276) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS src/components/__tests__/NumberDecomposition.test.tsx
+(node:66277) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS src/components/__tests__/QuizHeader.test.tsx
+(node:66275) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS src/components/__tests__/QuizSession.integration.test.tsx
+(node:66271) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:66272) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:66274) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS src/components/__tests__/ClickableNumber.test.tsx
+  ● Console
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at Object.start (node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:71:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7
+      at Object.pulsate (node_modules/@mui/material/ButtonBase/TouchRipple.js:274:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:77:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+PASS src/components/__tests__/VisualBlocks.test.tsx
+PASS src/components/__tests__/SummaryScreen.test.tsx
+  ● Console
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at Object.start (node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:71:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7
+      at Object.pulsate (node_modules/@mui/material/ButtonBase/TouchRipple.js:274:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:77:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+(node:66273) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS src/components/__tests__/MultipleChoiceAnswer.test.tsx
+  ● Console
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at Object.start (node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:71:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7
+      at Object.pulsate (node_modules/@mui/material/ButtonBase/TouchRipple.js:274:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:77:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+FAIL src/components/__tests__/InteractiveMathProblem.integration.test.tsx
+  ● Console
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at Object.start (node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:71:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7
+      at Object.pulsate (node_modules/@mui/material/ButtonBase/TouchRipple.js:274:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:77:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at Object.start (node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:71:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7
+      at Object.pulsate (node_modules/@mui/material/ButtonBase/TouchRipple.js:274:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:77:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at Object.start (node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:71:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7
+      at Object.pulsate (node_modules/@mui/material/ButtonBase/TouchRipple.js:274:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:77:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at Object.start (node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:71:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7
+      at Object.pulsate (node_modules/@mui/material/ButtonBase/TouchRipple.js:274:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:77:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at Object.start (node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:71:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:171:5
+      at node_modules/@mui/material/ButtonBase/TouchRipple.js:264:7
+      at Object.pulsate (node_modules/@mui/material/ButtonBase/TouchRipple.js:274:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:77:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+    console.error
+      An update to ForwardRef(TouchRipple) inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at Object.stop (node_modules/@mui/material/ButtonBase/TouchRipple.js:292:5)
+      at node_modules/@mui/material/useLazyRipple/useLazyRipple.js:74:47
+
+  ● InteractiveMathProblem Integration › completes full problem flow correctly
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: true, Any<Number>
+
+    Number of calls: 0
+
+    Ignored nodes: comments, script, style
+    [36m<html>[39m
+      [36m<head>[39m
+        [36m<meta[39m
+          [33mcontent[39m=[32m""[39m
+          [33mname[39m=[32m"emotion-insertion-point"[39m
+        [36m/>[39m
+      [36m</head>[39m
+      [36m<body>[39m
+        [36m<div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-3l2u8w-MuiPaper-root"[39m
+            [33mstyle[39m=[32m"--Paper-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);"[39m
+          [36m>[39m
+            [36m<h3[39m
+              [33mclass[39m=[32m"MuiTypography-root MuiTypography-h3 MuiTypography-gutterBottom css-16ok815-MuiTypography-root"[39m
+            [36m>[39m
+              [0m23[0m
+              [0m + [0m
+              [0m45[0m
+              [0m = ?[0m
+            [36m</h3>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"MuiBox-root css-1ux718x"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1aaqtui-MuiButtonBase-root-MuiButton-root"[39m
+                [33mtabindex[39m=[32m"0"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0m23[0m
+                [36m<div[39m
+                  [33mclass[39m=[32m"MuiBox-root css-2j9zgb"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1s58ymp-MuiSvgIcon-root"[39m
+                    [33mdata-testid[39m=[32m"CheckCircleIcon"[39m
+                    [33mfocusable[39m=[32m"false"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</div>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"MuiTouchRipple-root css-r3djoj-MuiTouchRipple-root"[39m
+                [36m/>[39m
+              [36m</button>[39m
+              [36m<h3[39m
+                [33mclass[39m=[32m"MuiTypography-root MuiTypography-h3 css-owvsjz-MuiTypography-root"[39m
+              [36m>[39m
+                [0m+[0m
+              [36m</h3>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1aaqtui-MuiButtonBase-root-MuiButton-root"[39m
+                [33mtabindex[39m=[32m"0"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0m45[0m
+                [36m<div[39m
+                  [33mclass[39m=[32m"MuiBox-root css-2j9zgb"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1s58ymp-MuiSvgIcon-root"[39m
+                    [33mdata-testid[39m=[32m"CheckCircleIcon"[39m
+                    [33mfocusable[39m=[32m"false"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</div>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"MuiTouchRipple-root css-r3djoj-MuiTouchRipple-root"[39m
+                [36m/>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"MuiBox-root css-i3pbo"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-8kyb3v-MuiPaper-root"[39m
+                [33mstyle[39m=[32m"--Paper-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);"[39m
+              [36m>[39m
+                [36m<h4[39m
+                  [33mclass[39m=[32m"MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom css-1it4a80-MuiTypography-root"[39m
+                [36m>[39m
+                  [0m23[0m
+                  [0m = [0m
+                  [0m20[0m
+                  [0m + [0m
+                  [0m3[0m
+                [36m</h4>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"MuiBox-root css-193o9je"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-dxq43v-MuiPaper-root"[39m
+                    [33mstyle[39m=[32m"--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"[39m
+                  [36m>[39m
+                    [36m<h5[39m
+                      [33mclass[39m=[32m"MuiTypography-root MuiTypography-h5 css-16xl4zq-MuiTypography-root"[39m
+                    [36m>[39m
+                      [0m20[0m
+                    [36m</h5>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"MuiTypography-root MuiTypography-caption css-mpaqru-MuiTypography-root"[39m
+                    [36m>[39m
+                      [0mtens[0m
+                    [36m</span>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-n5na76-MuiPaper-root"[39m
+                    [33mstyle[39m=[32m"--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"[39m
+                  [36m>[39m
+                    [36m<h5[39m
+                      [33mclass[39m=[32m"MuiTypography-root MuiTypography-h5 css-16xl4zq-MuiTypography-root"[39m
+                    [36m>[39m
+                      [0m3[0m
+                    [36m</h5>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"MuiTypography-root MuiTypography-caption css-mpaqru-MuiTypography-root"[39m
+                    [36m>[39m
+                      [0munits[0m
+                    [36m</span>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"MuiBox-root css-i3pbo"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-8kyb3v-MuiPaper-root"[39m
+                [33mstyle[39m=[32m"--Paper-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);"[39m
+              [36m>[39m
+                [36m<h4[39m
+                  [33mclass[39m=[32m"MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom css-1it4a80-MuiTypography-root"[39m
+                [36m>[39m
+                  [0m45[0m
+                  [0m = [0m
+                  [0m40[0m
+                  [0m + [0m
+                  [0m5[0m
+                [36m</h4>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"MuiBox-root css-193o9je"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-dxq43v-MuiPaper-root"[39m
+                    [33mstyle[39m=[32m"--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"[39m
+                  [36m>[39m
+                    [36m<h5[39m
+                      [33mclass[39m=[32m"MuiTypography-root MuiTypography-h5 css-16xl4zq-MuiTypography-root"[39m
+                    [36m>[39m
+                      [0m40[0m
+                    [36m</h5>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"MuiTypography-root MuiTypography-caption css-mpaqru-MuiTypography-root"[39m
+                    [36m>[39m
+                      [0mtens[0m
+                    [36m</span>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-n5na76-MuiPaper-root"[39m
+                    [33mstyle[39m=[32m"--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"[39m
+                  [36m>[39m
+                    [36m<h5[39m
+                      [33mclass[39m=[32m"MuiTypography-root MuiTypography-h5 css-16xl4zq-MuiTypography-root"[39m
+                    [36m>[39m
+                      [0m5[0m
+                    [36m</h5>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"MuiTypography-root MuiTypography-caption css-mpaqru-MuiTypography-root"[39m
+                    [36m>[39m
+                      [0munits[0m
+                    [36m</span>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"MuiBox-root css-h5fkc8"[39m
+            [36m>[39m
+              [36m<h5[39m
+                [33mclass[39m=[32m"MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"[39m
+              [36m>[39m
+                [0mWhat's the answer?[0m
+              [36m</h5>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"MuiBox-root css-1c4h91x"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-18lljhf-MuiButtonBase-root-MuiButton-root"[39m
+                  [33mtabindex[39m=[32m"0"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m66[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-focusVisible MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-18lljhf-MuiButtonBase-root-MuiButton-root"[39m
+                  [33mtabindex[39m=[32m"0"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m68[0m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"MuiTouchRipple-root css-r3djoj-MuiTouchRipple-root"[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"css-y4cjyz-MuiTouchRipple-ripple MuiTouchRipple-ripple MuiTouchRipple-rippleVisible MuiTouchRipple-ripplePulsate"[39m
+                      [33mstyle[39m=[32m"width: 1px; height: 1px; top: -0.5px; left: -0.5px;"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"MuiTouchRipple-child MuiTouchRipple-childPulsate"[39m
+                      [36m/>[39m
+                    [36m</span>[39m
+                  [36m</span>[39m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-18lljhf-MuiButtonBase-root-MuiButton-root"[39m
+                  [33mtabindex[39m=[32m"0"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m72[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-18lljhf-MuiButtonBase-root-MuiButton-root"[39m
+                  [33mtabindex[39m=[32m"0"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0m77[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</body>[39m
+    [36m</html>[39m
+
+      42 |
+      43 |     await waitFor(() => {
+    > 44 |       expect(onComplete).toHaveBeenCalledWith(true, expect.any(Number));
+         |                          ^
+      45 |     }, { timeout: 1000 });
+      46 |   });
+      47 |
+
+      at timeout (src/components/__tests__/InteractiveMathProblem.integration.test.tsx:44:26)
+      at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at checkRealTimersCallback (node_modules/@testing-library/dom/dist/wait-for.js:118:16)
+      at Timeout.task [as _onTimeout] (node_modules/jsdom/lib/jsdom/browser/Window.js:516:19)
+
+Test Suites: 1 failed, 7 passed, 8 total
+Tests:       1 failed, 40 passed, 41 total
+Snapshots:   0 total
+Time:        3.977 s, estimated 4 s
+Ran all test suites.

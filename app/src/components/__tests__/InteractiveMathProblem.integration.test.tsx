@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor, within } from '../../utils/test-utils';
+import { render, screen, waitFor } from '../../utils/test-utils';
 import userEvent from '@testing-library/user-event';
 import InteractiveMathProblem from '../InteractiveMathProblem';
 
@@ -15,35 +15,22 @@ describe('InteractiveMathProblem Integration', () => {
     const onComplete = jest.fn();
     render(<InteractiveMathProblem problem={mockProblem} onComplete={onComplete} />);
 
-    // Initial state
     expect(screen.getByText('23 + 45 = ?')).toBeInTheDocument();
 
-    // Click first number (23)
     await userEvent.click(screen.getByText('23'));
-
-    // Should show decomposition
     await waitFor(() => {
       expect(screen.getByText('23 = 20 + 3')).toBeInTheDocument();
     });
 
-    // Click second number (45)
     await userEvent.click(screen.getByText('45'));
-
-    // Should show second decomposition
     await waitFor(() => {
       expect(screen.getByText('45 = 40 + 5')).toBeInTheDocument();
     });
 
-    // Wait for both decompositions to be visible
-    expect(screen.getByText('23 = 20 + 3')).toBeInTheDocument();
-    expect(screen.getByText('45 = 40 + 5')).toBeInTheDocument();
-
-    // Should show multiple choice after delay
     await waitFor(() => {
       expect(screen.getByText('What\'s the answer?')).toBeInTheDocument();
     }, { timeout: 3000 });
 
-    // Wait for choices to be generated and find correct answer button
     const correctButton = await waitFor(() => {
       const buttons = screen.getAllByRole('button');
       const button = buttons.find(btn => btn.textContent === '68');
@@ -51,27 +38,23 @@ describe('InteractiveMathProblem Integration', () => {
       return button!;
     }, { timeout: 2000 });
 
-    // Click correct answer
     await userEvent.click(correctButton);
 
-    // Should call onComplete with correct=true
     await waitFor(() => {
       expect(onComplete).toHaveBeenCalledWith(true, expect.any(Number));
-    }, { timeout: 2000 });
+    }, { timeout: 1500 });
   });
 
-  it('handles incorrect answer', async () => {
+  it('allows retry on incorrect answer', async () => {
     const onComplete = jest.fn();
     render(<InteractiveMathProblem problem={mockProblem} onComplete={onComplete} />);
 
     await userEvent.click(screen.getByText('23'));
-    
     await waitFor(() => {
       expect(screen.getByText('23 = 20 + 3')).toBeInTheDocument();
     });
 
     await userEvent.click(screen.getByText('45'));
-
     await waitFor(() => {
       expect(screen.getByText('45 = 40 + 5')).toBeInTheDocument();
     });
@@ -80,7 +63,6 @@ describe('InteractiveMathProblem Integration', () => {
       expect(screen.getByText('What\'s the answer?')).toBeInTheDocument();
     }, { timeout: 3000 });
 
-    // Wait for choices and click wrong answer
     const wrongButton = await waitFor(() => {
       const buttons = screen.getAllByRole('button');
       const button = buttons.find(btn => 
@@ -97,7 +79,9 @@ describe('InteractiveMathProblem Integration', () => {
     await userEvent.click(wrongButton);
 
     await waitFor(() => {
-      expect(onComplete).toHaveBeenCalledWith(false, expect.any(Number));
-    }, { timeout: 2000 });
+      expect(onComplete).not.toHaveBeenCalled();
+    }, { timeout: 1000 });
+
+    expect(wrongButton).toBeDisabled();
   });
 });

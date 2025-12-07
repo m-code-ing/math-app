@@ -18,6 +18,8 @@ export const QuizSession: React.FC = () => {
   }));
 
   const handleQuestionComplete = useCallback((correct: boolean, interactions: number) => {
+    if (!correct) return; // Don't advance on wrong answer
+
     const result: QuestionResult = {
       questionIndex: session.currentQuestionIndex,
       problem: session.questions[session.currentQuestionIndex],
@@ -57,7 +59,6 @@ export const QuizSession: React.FC = () => {
   }, []);
 
   const correctCount = session.sessionResults.filter(r => r.correct).length;
-  const lastResult = session.sessionResults[session.sessionResults.length - 1];
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
@@ -75,10 +76,10 @@ export const QuizSession: React.FC = () => {
         </Box>
       )}
 
-      {session.sessionPhase === 'transition' && lastResult && (
+      {session.sessionPhase === 'transition' && (
         <TransitionScreen 
           onTransitionComplete={handleTransitionComplete}
-          correct={lastResult.correct}
+          correct={true}
         />
       )}
 
