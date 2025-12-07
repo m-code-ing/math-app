@@ -126,20 +126,30 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
           <Typography variant="h6" color="text.secondary" gutterBottom>
             Layer 2: Break Down Numbers
           </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box sx={{ display: 'flex', gap: 4, justifyContent: 'center', mt: 2 }}>
             {state.number1.isDecomposed && (
-              <NumberDecomposition
-                number={problem.num1}
-                tens={state.number1.tens}
-                units={state.number1.units}
-              />
+              <Box sx={{ flex: 1, maxWidth: 300 }}>
+                <Typography variant="subtitle1" textAlign="center" gutterBottom>
+                  {problem.num1}
+                </Typography>
+                <NumberDecomposition
+                  number={problem.num1}
+                  tens={state.number1.tens}
+                  units={state.number1.units}
+                />
+              </Box>
             )}
             {state.number2.isDecomposed && (
-              <NumberDecomposition
-                number={problem.num2}
-                tens={state.number2.tens}
-                units={state.number2.units}
-              />
+              <Box sx={{ flex: 1, maxWidth: 300 }}>
+                <Typography variant="subtitle1" textAlign="center" gutterBottom>
+                  {problem.num2}
+                </Typography>
+                <NumberDecomposition
+                  number={problem.num2}
+                  tens={state.number2.tens}
+                  units={state.number2.units}
+                />
+              </Box>
             )}
           </Box>
         </Box>

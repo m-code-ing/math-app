@@ -19,12 +19,14 @@ describe('InteractiveMathProblem Integration', () => {
 
     await userEvent.click(screen.getByText('23'));
     await waitFor(() => {
-      expect(screen.getByText('23 = 20 + 3')).toBeInTheDocument();
+      expect(screen.getByText('20')).toBeInTheDocument();
+      expect(screen.getByText('3')).toBeInTheDocument();
     });
 
     await userEvent.click(screen.getByText('45'));
     await waitFor(() => {
-      expect(screen.getByText('45 = 40 + 5')).toBeInTheDocument();
+      expect(screen.getByText('40')).toBeInTheDocument();
+      expect(screen.getByText('5')).toBeInTheDocument();
     });
 
     await waitFor(() => {
@@ -51,12 +53,12 @@ describe('InteractiveMathProblem Integration', () => {
 
     await userEvent.click(screen.getByText('23'));
     await waitFor(() => {
-      expect(screen.getByText('23 = 20 + 3')).toBeInTheDocument();
+      expect(screen.getByText('20')).toBeInTheDocument();
     });
 
     await userEvent.click(screen.getByText('45'));
     await waitFor(() => {
-      expect(screen.getByText('45 = 40 + 5')).toBeInTheDocument();
+      expect(screen.getByText('40')).toBeInTheDocument();
     });
 
     await waitFor(() => {

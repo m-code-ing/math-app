@@ -8,26 +8,20 @@ interface NumberDecompositionProps {
 }
 
 const NumberDecomposition: React.FC<NumberDecompositionProps> = ({
-  number,
   tens,
   units,
 }) => {
   return (
-    <Paper elevation={3} sx={{ p: 3, bgcolor: 'info.light', color: 'white' }}>
-      <Typography variant="h4" gutterBottom>
-        {number} = {tens} + {units}
-      </Typography>
-      <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mt: 2 }}>
-        <Paper sx={{ p: 2, bgcolor: 'warning.main', minWidth: 80 }}>
-          <Typography variant="h5">{tens}</Typography>
-          <Typography variant="caption">tens</Typography>
-        </Paper>
-        <Paper sx={{ p: 2, bgcolor: 'secondary.main', minWidth: 80 }}>
-          <Typography variant="h5">{units}</Typography>
-          <Typography variant="caption">units</Typography>
-        </Paper>
-      </Box>
-    </Paper>
+    <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
+      <Paper elevation={2} sx={{ p: 2, minWidth: 80, bgcolor: 'warning.light' }}>
+        <Typography variant="caption" display="block" gutterBottom>Tens</Typography>
+        <Typography variant="h4" color="warning.dark">{tens}</Typography>
+      </Paper>
+      <Paper elevation={2} sx={{ p: 2, minWidth: 80, bgcolor: 'secondary.light' }}>
+        <Typography variant="caption" display="block" gutterBottom>Units</Typography>
+        <Typography variant="h4" color="secondary.dark">{units}</Typography>
+      </Paper>
+    </Box>
   );
 };
 
