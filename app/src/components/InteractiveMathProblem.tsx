@@ -92,23 +92,20 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 4, maxWidth: 800, mx: 'auto' }}>
+    <Paper elevation={3} sx={{ p: 2, maxWidth: 800, mx: 'auto' }}>
       {/* Layer 1: Question with Clickable Numbers */}
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h6" color="text.secondary" gutterBottom>
+      <Box sx={{ mb: 2 }}>
+        <Typography variant="subtitle2" color="text.secondary" gutterBottom>
           Layer 1: Question
         </Typography>
-        <Typography variant="h3" textAlign="center" gutterBottom>
-          {problem.num1} + {problem.num2} = ?
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', mt: 3 }}>
+        <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mt: 1 }}>
           <ClickableNumber
             number={problem.num1}
             isSelectable={state.number1.isSelectable}
             isDecomposed={state.number1.isDecomposed}
             onClick={() => handleNumberClick('number1')}
           />
-          <Typography variant="h3" sx={{ alignSelf: 'center' }}>+</Typography>
+          <Typography variant="h4" sx={{ alignSelf: 'center' }}>+</Typography>
           <ClickableNumber
             number={problem.num2}
             isSelectable={state.number2.isSelectable}
@@ -118,18 +115,18 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
         </Box>
       </Box>
 
-      <Divider sx={{ my: 3 }} />
+      <Divider sx={{ my: 2 }} />
 
       {/* Layer 2: Decomposition */}
       {(state.number1.isDecomposed || state.number2.isDecomposed) && (
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h6" color="text.secondary" gutterBottom>
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="subtitle2" color="text.secondary" gutterBottom>
             Layer 2: Break Down Numbers
           </Typography>
-          <Box sx={{ display: 'flex', gap: 4, justifyContent: 'center', mt: 2 }}>
+          <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', mt: 1 }}>
             {state.number1.isDecomposed && (
-              <Box sx={{ flex: 1, maxWidth: 300 }}>
-                <Typography variant="subtitle1" textAlign="center" gutterBottom>
+              <Box sx={{ flex: 1, maxWidth: 250 }}>
+                <Typography variant="body2" textAlign="center" gutterBottom>
                   {problem.num1}
                 </Typography>
                 <NumberDecomposition
@@ -140,8 +137,8 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
               </Box>
             )}
             {state.number2.isDecomposed && (
-              <Box sx={{ flex: 1, maxWidth: 300 }}>
-                <Typography variant="subtitle1" textAlign="center" gutterBottom>
+              <Box sx={{ flex: 1, maxWidth: 250 }}>
+                <Typography variant="body2" textAlign="center" gutterBottom>
                   {problem.num2}
                 </Typography>
                 <NumberDecomposition
@@ -155,12 +152,12 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
         </Box>
       )}
 
-      {(state.number1.isDecomposed || state.number2.isDecomposed) && <Divider sx={{ my: 3 }} />}
+      {(state.number1.isDecomposed || state.number2.isDecomposed) && <Divider sx={{ my: 2 }} />}
 
       {/* Layer 3: Answer Choices */}
       {state.showFinalChoices && (
         <Box>
-          <Typography variant="h6" color="text.secondary" gutterBottom>
+          <Typography variant="subtitle2" color="text.secondary" gutterBottom>
             Layer 3: Choose Answer
           </Typography>
           <MultipleChoiceAnswer

@@ -4,10 +4,10 @@ import userEvent from '@testing-library/user-event';
 import MultipleChoiceAnswer from '../MultipleChoiceAnswer';
 
 describe('MultipleChoiceAnswer', () => {
-  it('generates 4 choices including correct answer', () => {
+  it('generates 3 choices including correct answer', () => {
     render(<MultipleChoiceAnswer correctAnswer={50} onAnswerSelected={() => {}} />);
     const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(4);
+    expect(buttons).toHaveLength(3);
     expect(screen.getByText('50')).toBeInTheDocument();
   });
 

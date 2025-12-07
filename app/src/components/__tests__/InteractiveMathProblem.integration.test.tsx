@@ -15,7 +15,8 @@ describe('InteractiveMathProblem Integration', () => {
     const onComplete = jest.fn();
     render(<InteractiveMathProblem problem={mockProblem} onComplete={onComplete} />);
 
-    expect(screen.getByText('23 + 45 = ?')).toBeInTheDocument();
+    expect(screen.getByText('23')).toBeInTheDocument();
+    expect(screen.getByText('45')).toBeInTheDocument();
 
     await userEvent.click(screen.getByText('23'));
     await waitFor(() => {

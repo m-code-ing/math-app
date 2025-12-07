@@ -22,9 +22,9 @@ const ClickableNumber: React.FC<ClickableNumberProps> = ({
       variant="contained"
       sx={{
         position: 'relative',
-        minWidth: 120,
-        minHeight: 80,
-        fontSize: '2rem',
+        minWidth: 90,
+        minHeight: 60,
+        fontSize: '1.5rem',
         fontWeight: 'bold',
         borderRadius: 3,
         bgcolor: isDecomposed ? 'info.main' : 'success.main',
@@ -40,8 +40,8 @@ const ClickableNumber: React.FC<ClickableNumberProps> = ({
     >
       {number}
       {isDecomposed && (
-        <Box sx={{ position: 'absolute', top: 5, right: 5 }}>
-          <CheckCircleIcon sx={{ color: 'success.light', fontSize: 25 }} />
+        <Box sx={{ position: 'absolute', top: 3, right: 3 }}>
+          <CheckCircleIcon sx={{ color: 'success.light', fontSize: 20 }} />
         </Box>
       )}
     </Button>
