@@ -57,6 +57,7 @@ export const QuizSession: React.FC = () => {
   }, []);
 
   const correctCount = session.sessionResults.filter(r => r.correct).length;
+  const lastResult = session.sessionResults[session.sessionResults.length - 1];
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
@@ -74,8 +75,11 @@ export const QuizSession: React.FC = () => {
         </Box>
       )}
 
-      {session.sessionPhase === 'transition' && (
-        <TransitionScreen onTransitionComplete={handleTransitionComplete} />
+      {session.sessionPhase === 'transition' && lastResult && (
+        <TransitionScreen 
+          onTransitionComplete={handleTransitionComplete}
+          correct={lastResult.correct}
+        />
       )}
 
       {session.sessionPhase === 'summary' && (
