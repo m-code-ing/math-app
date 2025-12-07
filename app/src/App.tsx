@@ -71,7 +71,7 @@ function AppContent() {
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="/math-app">
         <AppContent />
       </BrowserRouter>
     </div>
