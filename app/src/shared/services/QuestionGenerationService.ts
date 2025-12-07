@@ -5,20 +5,37 @@
 import { MathProblem } from '../../features/addition-quiz/types/MathProblem';
 import { TenFrameQuestion } from '../../features/ten-frame/types/TenFrame';
 
+export type DifficultyLevel = 'easy' | 'medium' | 'hard' | 'expert';
+
 export class QuestionGenerationService {
   /**
-   * Generate addition problems
+   * Generate addition problems with difficulty level
+   * Difficulty determines the maximum sum (not the individual numbers)
    */
-  generateAdditionProblems(count: number = 10): MathProblem[] {
+  generateAdditionProblems(count: number = 10, difficulty: DifficultyLevel = 'hard'): MathProblem[] {
     const problems: MathProblem[] = [];
     const used = new Set<string>();
     let attempts = 0;
-    const maxAttempts = count * 100; // Prevent infinite loops
+    const maxAttempts = count * 100;
+
+    const maxSums = {
+      easy: 10,
+      medium: 20,
+      hard: 50,
+      expert: 100,
+    };
+
+    const maxSum = maxSums[difficulty];
 
     while (problems.length < count && attempts < maxAttempts) {
       attempts++;
-      const num1 = Math.floor(Math.random() * 40) + 10;
-      const num2 = Math.floor(Math.random() * 40) + 10;
+      
+      // Generate num1 between 1 and maxSum-1 (to leave room for num2)
+      const num1 = Math.floor(Math.random() * (maxSum - 1)) + 1;
+      // Generate num2 such that num1 + num2 <= maxSum
+      const maxNum2 = maxSum - num1;
+      const num2 = Math.floor(Math.random() * maxNum2) + 1;
+      
       const key = `${num1}+${num2}`;
 
       if (!used.has(key)) {

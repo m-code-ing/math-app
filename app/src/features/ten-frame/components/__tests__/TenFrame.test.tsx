@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { render } from '../../../../shared/utils/test-utils';
-import { TenFrame } from '../TenFrame';
+import { TenFrame } from '../../../../shared/components/TenFrame';
 import { TenFrameQuestion } from '../TenFrameQuestion';
 import { TenFrameQuiz } from '../TenFrameQuiz';
 
