@@ -82,6 +82,66 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
 
   const [interactionCount, setInteractionCount] = useState(0);
 
+  // Reset state when problem changes
+  useEffect(() => {
+    if (!showDecomposition) {
+      setState({
+        currentPhase: 'finalAnswer',
+        currentNumber: null,
+        number1: { 
+          value: problem.num1, 
+          isDecomposed: false, 
+          isSelectable: false,
+          tens: 0,
+          units: 0
+        },
+        number2: { 
+          value: problem.num2, 
+          isDecomposed: false, 
+          isSelectable: false,
+          tens: 0,
+          units: 0
+        },
+        collectedPieces: [],
+        splitClickedPieces: {
+          tensClicked: false,
+          unitsClicked: false,
+        },
+        showFinalChoices: true,
+        selectedAnswer: null,
+        isCorrect: null,
+      });
+    } else {
+      setState({
+        currentPhase: 'number1',
+        currentNumber: null,
+        number1: { 
+          value: problem.num1, 
+          isDecomposed: false, 
+          isSelectable: true,
+          tens: 0,
+          units: 0
+        },
+        number2: { 
+          value: problem.num2, 
+          isDecomposed: false, 
+          isSelectable: false,
+          tens: 0,
+          units: 0
+        },
+        collectedPieces: [],
+        splitClickedPieces: {
+          tensClicked: false,
+          unitsClicked: false,
+        },
+        showFinalChoices: false,
+        selectedAnswer: null,
+        isCorrect: null,
+      });
+    }
+    setInteractionCount(0);
+  }, [problem, showDecomposition]);
+
   useEffect(() => {
     if (state.number1.isDecomposed && state.number2.isDecomposed && !state.showFinalChoices) {
       const timer = setTimeout(() => {
@@ -132,8 +192,25 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
 
   return (
     <Paper elevation={3} sx={{ p: 2, maxWidth: 800, mx: 'auto' }}>
-      {/* Layer 1: Question */}
-      <Box sx={{ mb: 2 }}>
+      {state.isCorrect ? (
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          minHeight: '400px' 
+        }}>
+          <Typography variant="h1" sx={{ fontSize: '6rem', mb: 2 }}>
+            🎉
+          </Typography>
+          <Typography variant="h3">
+            Good!
+          </Typography>
+        </Box>
+      ) : (
+        <>
+          {/* Layer 1: Question */}
+          <Box sx={{ mb: 2 }}>
         <Typography variant="subtitle2" color="text.secondary" gutterBottom>
           {showDecomposition ? 'Layer 1: Question' : 'Question'}
         </Typography>
@@ -244,6 +321,8 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
             maxValue={maxAnswerValue}
           />
         </Box>
+      )}
+      </>
       )}
     </Paper>
   );

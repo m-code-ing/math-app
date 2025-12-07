@@ -3,7 +3,6 @@ import { Box, Container } from '@mui/material';
 import { QuizSessionState, QuestionResult } from '../types/Quiz';
 import { questionGenerationService, DifficultyLevel } from '../../../shared/services';
 import { QuizHeader } from '../../../shared/components/QuizHeader';
-import { TransitionScreen } from '../../../shared/components/TransitionScreen';
 import { SummaryScreen } from '../../../shared/components/SummaryScreen';
 import InteractiveMathProblem from './InteractiveMathProblem';
 
@@ -43,24 +42,27 @@ export const QuizSession: React.FC<QuizSessionProps> = ({ questionCount = 10, di
       timeSpent: 0,
     };
 
-    setSession(prev => ({
-      ...prev,
-      sessionResults: [...prev.sessionResults, result],
-      sessionPhase: 'transition',
-    }));
-  }, [session.currentQuestionIndex, session.questions]);
+    const newResults = [...session.sessionResults, result];
 
-  const handleTransitionComplete = useCallback(() => {
-    if (session.currentQuestionIndex < 9) {
+    // Check if this was the last question
+    if (session.currentQuestionIndex === session.questions.length - 1) {
       setSession(prev => ({
         ...prev,
-        currentQuestionIndex: prev.currentQuestionIndex + 1,
-        sessionPhase: 'active',
+        sessionResults: newResults,
+        sessionPhase: 'summary',
       }));
     } else {
-      setSession(prev => ({ ...prev, sessionPhase: 'summary' }));
+      // Move to next question after a brief delay for feedback
+      setTimeout(() => {
+        setSession(prev => ({
+          ...prev,
+          sessionResults: newResults,
+          currentQuestionIndex: prev.currentQuestionIndex + 1,
+          sessionPhase: 'active',
+        }));
+      }, 500);
     }
-  }, [session.currentQuestionIndex]);
+  }, [session.currentQuestionIndex, session.questions, session.sessionResults]);
 
   const handleTryAgain = useCallback(() => {
     setSession({
@@ -91,13 +93,6 @@ export const QuizSession: React.FC<QuizSessionProps> = ({ questionCount = 10, di
             maxAnswerValue={maxAnswerValues[difficulty]}
           />
         </Box>
-      )}
-
-      {session.sessionPhase === 'transition' && (
-        <TransitionScreen 
-          onTransitionComplete={handleTransitionComplete}
-          correct={true}
-        />
       )}
 
       {session.sessionPhase === 'summary' && (
