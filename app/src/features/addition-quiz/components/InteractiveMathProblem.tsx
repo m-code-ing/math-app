@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Paper, Divider } from '@mui/material';
-import { InteractiveState, MathProblem } from '../types/InteractiveMath';
+import { InteractiveState } from '../types/InteractiveMath';
+import { MathProblem } from '../types/MathProblem';
 import ClickableNumber from './ClickableNumber';
 import MultipleChoiceAnswer from './MultipleChoiceAnswer';
 import NumberDecomposition from './NumberDecomposition';
@@ -46,7 +47,7 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
   useEffect(() => {
     if (state.number1.isDecomposed && state.number2.isDecomposed && !state.showFinalChoices) {
       const timer = setTimeout(() => {
-        setState(prev => ({ ...prev, showFinalChoices: true, currentPhase: 'finalAnswer' }));
+        setState((prev: InteractiveState) => ({ ...prev, showFinalChoices: true, currentPhase: 'finalAnswer' }));
       }, 500);
       return () => clearTimeout(timer);
     }
@@ -60,7 +61,7 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
     const units = value % 10;
 
     if (numberKey === 'number1') {
-      setState(prev => ({
+      setState((prev: InteractiveState) => ({
         ...prev,
         number1: {
           ...prev.number1,
@@ -72,7 +73,7 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
         number2: { ...prev.number2, isSelectable: true },
       }));
     } else {
-      setState(prev => ({
+      setState((prev: InteractiveState) => ({
         ...prev,
         number2: {
           ...prev.number2,
@@ -87,7 +88,7 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
   };
 
   const handleAnswerSelected = (isCorrect: boolean) => {
-    setState(prev => ({ ...prev, isCorrect, currentPhase: 'complete' }));
+    setState((prev: InteractiveState) => ({ ...prev, isCorrect, currentPhase: 'complete' }));
     setTimeout(() => onComplete(isCorrect, interactionCount + 1), 500);
   };
 
