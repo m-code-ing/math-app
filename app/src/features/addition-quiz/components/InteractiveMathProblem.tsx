@@ -5,7 +5,7 @@ import { MathProblem } from '../types/MathProblem';
 import ClickableNumber from './ClickableNumber';
 import MultipleChoiceAnswer from './MultipleChoiceAnswer';
 import NumberDecomposition from './NumberDecomposition';
-import { TenFrame } from '../../ten-frame/components/TenFrame';
+import { TenFrame } from '../../../shared/components/TenFrame';
 
 interface InteractiveMathProblemProps {
   problem: MathProblem;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-import { TenFrame } from './TenFrame';
+import { TenFrame } from '../../../shared/components/TenFrame';
 import { TenFrameQuestion as TenFrameQuestionType, TenFrameMode } from '../types/TenFrame';
 import { questionGenerationService } from '../../../shared/services';
 
