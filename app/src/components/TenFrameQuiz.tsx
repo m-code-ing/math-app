@@ -12,15 +12,10 @@ interface TenFrameQuizProps {
 }
 
 export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
-  console.log('### TenFrameQuiz render, mode:', mode);
-  
   const [quizState, setQuizState] = useState<TenFrameQuizState>(() => {
-    console.log('### TenFrameQuiz initializing state');
     const questions = mode === 'recognition' 
       ? generateRecognitionQuestions(10)
       : generateMake10Questions(10);
-    
-    console.log('### Generated questions:', questions);
     
     return {
       sessionId: `${mode}-${Date.now()}`,
@@ -32,18 +27,10 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
     };
   });
 
-  console.log('### Current quiz state:', {
-    phase: quizState.sessionPhase,
-    questionIndex: quizState.currentQuestionIndex,
-    questionsLength: quizState.questions.length,
-  });
-
   const handleQuestionComplete = useCallback((correct: boolean, interactions: number) => {
-    console.log('### handleQuestionComplete called:', { correct, interactions });
     if (!correct) return;
 
     setQuizState(prev => {
-      console.log('### Updating state in handleQuestionComplete');
       const result: TenFrameResult = {
         questionIndex: prev.currentQuestionIndex,
         tenFrameQuestion: prev.questions[prev.currentQuestionIndex],
@@ -55,14 +42,12 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
       const newResults = [...prev.sessionResults, result];
 
       if (prev.currentQuestionIndex === prev.questions.length - 1) {
-        console.log('### Moving to summary');
         return {
           ...prev,
           sessionResults: newResults,
           sessionPhase: 'summary',
         };
       } else {
-        console.log('### Moving to transition');
         return {
           ...prev,
           sessionResults: newResults,
@@ -73,7 +58,6 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
   }, []);
 
   const handleTransitionComplete = useCallback(() => {
-    console.log('### handleTransitionComplete called');
     setQuizState(prev => ({
       ...prev,
       currentQuestionIndex: prev.currentQuestionIndex + 1,
@@ -82,7 +66,6 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
   }, []);
 
   const handleTryAgain = useCallback(() => {
-    console.log('### handleTryAgain called');
     const questions = mode === 'recognition' 
       ? generateRecognitionQuestions(10)
       : generateMake10Questions(10);
@@ -99,8 +82,6 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
 
   const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
   const correctCount = quizState.sessionResults.filter(r => r.correct).length;
-
-  console.log('### Current question:', currentQuestion);
 
   return (
     <Box sx={{ p: 2, maxWidth: 600, mx: 'auto' }}>

@@ -17,38 +17,27 @@ export const TenFrameQuestion: React.FC<TenFrameQuestionProps> = ({
   mode,
   onComplete,
 }) => {
-  console.log('### TenFrameQuestion render:', { question, mode });
-  
   const [choices, setChoices] = useState<number[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [wrongAnswers, setWrongAnswers] = useState<Set<number>>(new Set());
   const [interactions, setInteractions] = useState(0);
 
   useEffect(() => {
-    console.log('### TenFrameQuestion useEffect triggered');
-    const newChoices = generateAnswerChoices(question.correctAnswer, mode);
-    console.log('### Generated choices:', newChoices);
-    setChoices(newChoices);
+    setChoices(generateAnswerChoices(question.correctAnswer, mode));
     setSelectedAnswer(null);
     setWrongAnswers(new Set());
     setInteractions(0);
   }, [question, mode]);
 
   const handleAnswerClick = (answer: number) => {
-    console.log('### Answer clicked:', answer);
-    if (wrongAnswers.has(answer) || selectedAnswer !== null) {
-      console.log('### Answer click ignored (already selected or wrong)');
-      return;
-    }
+    if (wrongAnswers.has(answer) || selectedAnswer !== null) return;
 
     setSelectedAnswer(answer);
     setInteractions(prev => prev + 1);
 
     if (answer === question.correctAnswer) {
-      console.log('### Correct answer! Calling onComplete');
       setTimeout(() => onComplete(true, interactions + 1), 500);
     } else {
-      console.log('### Wrong answer');
       setWrongAnswers(prev => new Set(prev).add(answer));
       setTimeout(() => setSelectedAnswer(null), 500);
     }
@@ -57,8 +46,6 @@ export const TenFrameQuestion: React.FC<TenFrameQuestionProps> = ({
   const questionText = mode === 'recognition' 
     ? 'What number is this?' 
     : 'How many more to make 10?';
-
-  console.log('### Rendering with choices:', choices);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
