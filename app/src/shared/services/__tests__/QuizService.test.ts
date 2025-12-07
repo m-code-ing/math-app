@@ -128,6 +128,12 @@ describe('QuizService', () => {
   });
 
   describe('user statistics', () => {
+    beforeEach(() => {
+      localStorage.clear();
+      storage = new StorageService();
+      service = new QuizService(storage);
+    });
+
     it('returns default stats when none exist', () => {
       const stats = service.getUserStats();
       expect(stats.totalQuizzesCompleted).toBe(0);
@@ -231,6 +237,12 @@ describe('QuizService', () => {
   });
 
   describe('clearAllData', () => {
+    beforeEach(() => {
+      localStorage.clear();
+      storage = new StorageService();
+      service = new QuizService(storage);
+    });
+
     it('clears all service data', () => {
       const session: QuizSessionRecord = {
         sessionId: 'test',
