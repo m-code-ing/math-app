@@ -16,11 +16,10 @@ describe('ClickableNumber', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('does not call onClick when disabled', async () => {
+  it('button is disabled when not selectable', () => {
     const onClick = jest.fn();
     render(<ClickableNumber number={42} isSelectable={false} isDecomposed={false} onClick={onClick} />);
-    await userEvent.click(screen.getByRole('button'));
-    expect(onClick).not.toHaveBeenCalled();
+    expect(screen.getByRole('button')).toBeDisabled();
   });
 
   it('shows checkmark when decomposed', () => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import { InteractiveState, MathProblem } from '../types/InteractiveMath';
 import ClickableNumber from './ClickableNumber';
@@ -43,6 +43,15 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
 
   const [interactionCount, setInteractionCount] = useState(0);
 
+  useEffect(() => {
+    if (state.number1.isDecomposed && state.number2.isDecomposed && !state.showFinalChoices) {
+      const timer = setTimeout(() => {
+        setState(prev => ({ ...prev, showFinalChoices: true, currentPhase: 'finalAnswer' }));
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [state.number1.isDecomposed, state.number2.isDecomposed, state.showFinalChoices]);
+
   const handleNumberClick = (numberKey: 'number1' | 'number2') => {
     if (!state[numberKey].isSelectable || state[numberKey].isDecomposed) return;
 
@@ -50,18 +59,30 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
     const tens = Math.floor(value / 10) * 10;
     const units = value % 10;
 
-    setState(prev => ({
-      ...prev,
-      [numberKey]: {
-        ...prev[numberKey],
-        isDecomposed: true,
-        tens,
-        units,
-      },
-      currentPhase: numberKey === 'number1' ? 'number2' : 'finalAnswer',
-      number2: numberKey === 'number1' ? { ...prev.number2, isSelectable: true } : prev.number2,
-      showFinalChoices: numberKey === 'number2',
-    }));
+    if (numberKey === 'number1') {
+      setState(prev => ({
+        ...prev,
+        number1: {
+          ...prev.number1,
+          isDecomposed: true,
+          tens,
+          units,
+        },
+        currentPhase: 'number2',
+        number2: { ...prev.number2, isSelectable: true },
+      }));
+    } else {
+      setState(prev => ({
+        ...prev,
+        number2: {
+          ...prev.number2,
+          isDecomposed: true,
+          tens,
+          units,
+        },
+        currentPhase: 'finalAnswer',
+      }));
+    }
     setInteractionCount(c => c + 1);
   };
 
