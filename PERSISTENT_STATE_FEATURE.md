@@ -1,10 +1,13 @@
 # Persistent State Feature - Design Document
 
 **Date**: 2025-12-07  
-**Status**: Design Phase
+**Status**: Design Phase  
+**Prerequisite**: [SERVICE_LAYER_ARCHITECTURE.md](SERVICE_LAYER_ARCHITECTURE.md) must be implemented first
 
 ## Overview
 Add persistent state management to save user progress across sessions, enabling children to track their learning journey over time.
+
+**Note:** This feature builds on top of the service layer. Components will interact with `QuizService`, which delegates to `StorageService` for persistence.
 
 ---
 
@@ -166,13 +169,24 @@ interface UserPreferences {
 
 ## Storage Structure
 
-### localStorage Keys
+**Note:** These keys are managed by `StorageService`. Components never access localStorage directly.
+
+### localStorage Keys (managed by StorageService)
 ```
 math-app:session-history     // Array<QuizSessionRecord>
 math-app:in-progress         // InProgressQuiz | null
 math-app:user-stats          // UserStats
 math-app:preferences         // UserPreferences
 math-app:version             // string (for migration)
+```
+
+### Access Pattern
+```typescript
+// ❌ NEVER do this in components:
+localStorage.setItem('math-app:session-history', JSON.stringify(data));
+
+// ✅ ALWAYS use service layer:
+quizService.saveCompletedSession(session);
 ```
 
 ### Size Estimates
@@ -247,17 +261,26 @@ Progress Dashboard
 
 ## Implementation Plan
 
-### Step 1: Create Storage Service
+**Prerequisites:**
+1. ✅ Service layer must be implemented first (see SERVICE_LAYER_ARCHITECTURE.md)
+2. ✅ StorageService handles localStorage operations
+3. ✅ QuizService handles business logic
+
+### Step 1: Extend QuizService (Already exists from service layer)
 ```typescript
-// src/shared/services/storageService.ts
-class StorageService {
-  saveSession(session: QuizSessionRecord): void
-  getSessionHistory(): QuizSessionRecord[]
-  saveInProgress(quiz: InProgressQuiz): void
-  getInProgress(): InProgressQuiz | null
-  clearInProgress(): void
+// shared/services/QuizService.ts
+class QuizService {
+  // Session management (already implemented)
+  startQuiz(type: QuizType): string
+  saveProgress(session: QuizSession): void
+  getCurrentSession(): QuizSession | null
+  clearProgress(): void
+  
+  // Add these methods for persistent state:
+  saveCompletedSession(session: QuizSessionRecord): void
+  getSessionHistory(limit?: number): QuizSessionRecord[]
+  getUserStats(): UserStats
   updateStats(session: QuizSessionRecord): void
-  getStats(): UserStats
   savePreferences(prefs: UserPreferences): void
   getPreferences(): UserPreferences
   clearAllData(): void
@@ -265,10 +288,10 @@ class StorageService {
 ```
 
 ### Step 2: Update Quiz Components
-- QuizSession: Save progress after each question
-- TenFrameQuiz: Save progress after each question
-- SummaryScreen: Save completed session to history
-- App.tsx: Check for in-progress quiz on mount
+- QuizSession: Call `quizService.saveProgress()` after each question
+- TenFrameQuiz: Call `quizService.saveProgress()` after each question
+- SummaryScreen: Call `quizService.saveCompletedSession()` on completion
+- App.tsx: Call `quizService.getCurrentSession()` on mount to check for resume
 
 ### Step 3: Create Progress Dashboard
 - New route: `/progress`
