@@ -10,12 +10,12 @@ interface QuizModeSelectorProps {
 
 export const QuizModeSelector: React.FC<QuizModeSelectorProps> = ({ onSelect }) => {
   return (
-    <Box sx={{ p: 3, maxWidth: 800, mx: 'auto' }}>
-      <Typography variant="h4" align="center" sx={{ mb: 4 }}>
+    <Box sx={{ p: { xs: 2, sm: 3 }, maxWidth: 800, mx: 'auto' }}>
+      <Typography variant="h4" align="center" sx={{ mb: { xs: 3, sm: 4 }, fontSize: { xs: '1.5rem', sm: '2rem' } }}>
         Choose Your Math Practice
       </Typography>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 2, sm: 3 } }}>
         <Card
           elevation={3}
           sx={{
@@ -25,12 +25,12 @@ export const QuizModeSelector: React.FC<QuizModeSelectorProps> = ({ onSelect }) 
           }}
           onClick={() => onSelect('addition')}
         >
-          <CardContent sx={{ textAlign: 'center', py: 3 }}>
-            <AddIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
-            <Typography variant="h5" sx={{ mb: 1, fontWeight: 'bold' }}>
+          <CardContent sx={{ textAlign: 'center', py: { xs: 2, sm: 3 } }}>
+            <AddIcon sx={{ fontSize: { xs: 48, sm: 60 }, color: 'primary.main', mb: { xs: 1, sm: 2 } }} />
+            <Typography variant="h5" sx={{ mb: 1, fontWeight: 'bold', fontSize: { xs: '1.25rem', sm: '1.5rem' } }}>
               Addition Quiz
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontSize: { xs: '0.875rem', sm: '1rem' } }}>
               Break down and add numbers
             </Typography>
             <Chip label="10 Questions" color="primary" size="small" />
@@ -46,12 +46,12 @@ export const QuizModeSelector: React.FC<QuizModeSelectorProps> = ({ onSelect }) 
           }}
           onClick={() => onSelect('recognition')}
         >
-          <CardContent sx={{ textAlign: 'center', py: 3 }}>
-            <GridOnIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
-            <Typography variant="h5" sx={{ mb: 1, fontWeight: 'bold' }}>
+          <CardContent sx={{ textAlign: 'center', py: { xs: 2, sm: 3 } }}>
+            <GridOnIcon sx={{ fontSize: { xs: 48, sm: 60 }, color: 'primary.main', mb: { xs: 1, sm: 2 } }} />
+            <Typography variant="h5" sx={{ mb: 1, fontWeight: 'bold', fontSize: { xs: '1.25rem', sm: '1.5rem' } }}>
               10-Frame: Number Recognition
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontSize: { xs: '0.875rem', sm: '1rem' } }}>
               Identify numbers in a 10-frame
             </Typography>
             <Chip label="10 Questions" color="primary" size="small" />
@@ -67,12 +67,12 @@ export const QuizModeSelector: React.FC<QuizModeSelectorProps> = ({ onSelect }) 
           }}
           onClick={() => onSelect('make10')}
         >
-          <CardContent sx={{ textAlign: 'center', py: 3 }}>
-            <LooksOneIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
-            <Typography variant="h5" sx={{ mb: 1, fontWeight: 'bold' }}>
+          <CardContent sx={{ textAlign: 'center', py: { xs: 2, sm: 3 } }}>
+            <LooksOneIcon sx={{ fontSize: { xs: 48, sm: 60 }, color: 'primary.main', mb: { xs: 1, sm: 2 } }} />
+            <Typography variant="h5" sx={{ mb: 1, fontWeight: 'bold', fontSize: { xs: '1.25rem', sm: '1.5rem' } }}>
               10-Frame: Make 10
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontSize: { xs: '0.875rem', sm: '1rem' } }}>
               Find how many more to make 10
             </Typography>
             <Chip label="10 Questions" color="primary" size="small" />
