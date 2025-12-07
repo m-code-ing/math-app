@@ -6,6 +6,10 @@ describe('QuizService', () => {
   let service: QuizService;
   let storage: StorageService;
 
+  beforeAll(() => {
+    localStorage.clear();
+  });
+
   beforeEach(() => {
     localStorage.clear();
     storage = new StorageService();
@@ -13,6 +17,10 @@ describe('QuizService', () => {
   });
 
   afterEach(() => {
+    localStorage.clear();
+  });
+
+  afterAll(() => {
     localStorage.clear();
   });
 
@@ -56,6 +64,12 @@ describe('QuizService', () => {
   });
 
   describe('session history', () => {
+    beforeEach(() => {
+      localStorage.clear();
+      storage = new StorageService();
+      service = new QuizService(storage);
+    });
+
     const createMockSession = (quizType: 'addition' | 'recognition' | 'make10', correctAnswers: number): QuizSessionRecord => ({
       sessionId: `session-${Date.now()}`,
       quizType,
@@ -114,12 +128,6 @@ describe('QuizService', () => {
   });
 
   describe('user statistics', () => {
-    beforeEach(() => {
-      localStorage.clear();
-      storage = new StorageService();
-      service = new QuizService(storage);
-    });
-
     it('returns default stats when none exist', () => {
       const stats = service.getUserStats();
       expect(stats.totalQuizzesCompleted).toBe(0);
