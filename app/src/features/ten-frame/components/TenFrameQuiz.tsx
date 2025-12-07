@@ -9,23 +9,36 @@ import { generateRecognitionQuestions, generateMake10Questions } from '../utils/
 
 interface TenFrameQuizProps {
   mode: TenFrameMode;
+  questionCount?: number;
 }
 
-export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
+export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode, questionCount = 10 }) => {
+  console.log('### TenFrameQuiz - mode:', mode, 'questionCount:', questionCount);
+  
   const [quizState, setQuizState] = useState<TenFrameQuizState>(() => {
-    const questions = mode === 'recognition' 
-      ? generateRecognitionQuestions(10)
-      : generateMake10Questions(10);
-    
-    return {
-      sessionId: `${mode}-${Date.now()}`,
-      questions,
-      currentQuestionIndex: 0,
-      sessionResults: [],
-      sessionPhase: 'active',
-      startTime: new Date(),
-    };
+    console.log('### TenFrameQuiz - initializing state with questionCount:', questionCount);
+    try {
+      const questions = mode === 'recognition' 
+        ? generateRecognitionQuestions(questionCount)
+        : generateMake10Questions(questionCount);
+      
+      console.log('### TenFrameQuiz - generated questions:', questions.length);
+      
+      return {
+        sessionId: `${mode}-${Date.now()}`,
+        questions,
+        currentQuestionIndex: 0,
+        sessionResults: [],
+        sessionPhase: 'active',
+        startTime: new Date(),
+      };
+    } catch (error) {
+      console.error('### TenFrameQuiz - error generating questions:', error);
+      throw error;
+    }
   });
+
+  console.log('### TenFrameQuiz - state initialized, phase:', quizState.sessionPhase);
 
   const handleQuestionComplete = useCallback((correct: boolean, interactions: number) => {
     if (!correct) return;
@@ -67,8 +80,8 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
 
   const handleTryAgain = useCallback(() => {
     const questions = mode === 'recognition' 
-      ? generateRecognitionQuestions(10)
-      : generateMake10Questions(10);
+      ? generateRecognitionQuestions(questionCount)
+      : generateMake10Questions(questionCount);
     
     setQuizState({
       sessionId: `${mode}-${Date.now()}`,
@@ -78,7 +91,7 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
       sessionPhase: 'active',
       startTime: new Date(),
     });
-  }, [mode]);
+  }, [mode, questionCount]);
 
   const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
   const correctCount = quizState.sessionResults.filter(r => r.correct).length;

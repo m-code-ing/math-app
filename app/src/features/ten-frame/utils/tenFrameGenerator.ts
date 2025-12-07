@@ -2,12 +2,21 @@ import { TenFrameQuestion } from '../types/TenFrame';
 
 export function generateRecognitionQuestions(count: number = 10): TenFrameQuestion[] {
   const questions: TenFrameQuestion[] = [];
-  const used = new Set<number>();
   
-  while (questions.length < count) {
-    const number = Math.floor(Math.random() * 10) + 1;
-    if (!used.has(number)) {
-      used.add(number);
+  // For counts <= 10, ensure unique numbers
+  if (count <= 10) {
+    const used = new Set<number>();
+    while (questions.length < count) {
+      const number = Math.floor(Math.random() * 10) + 1;
+      if (!used.has(number)) {
+        used.add(number);
+        questions.push({ number, correctAnswer: number });
+      }
+    }
+  } else {
+    // For counts > 10, allow duplicates
+    for (let i = 0; i < count; i++) {
+      const number = Math.floor(Math.random() * 10) + 1;
       questions.push({ number, correctAnswer: number });
     }
   }
@@ -19,23 +28,24 @@ export function generateMake10Questions(count: number = 10): TenFrameQuestion[] 
   const questions: TenFrameQuestion[] = [];
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   
-  // Shuffle and take first 9, then add one duplicate if count is 10
-  const shuffled = shuffle(numbers);
-  
-  for (let i = 0; i < Math.min(count, 9); i++) {
-    questions.push({ 
-      number: shuffled[i], 
-      correctAnswer: 10 - shuffled[i] 
-    });
-  }
-  
-  // If we need 10 questions, add one more random number
-  if (count === 10) {
-    const extraNumber = Math.floor(Math.random() * 9) + 1;
-    questions.push({ 
-      number: extraNumber, 
-      correctAnswer: 10 - extraNumber 
-    });
+  if (count <= 9) {
+    // For counts <= 9, use unique numbers
+    const shuffled = shuffle(numbers);
+    for (let i = 0; i < count; i++) {
+      questions.push({ 
+        number: shuffled[i], 
+        correctAnswer: 10 - shuffled[i] 
+      });
+    }
+  } else {
+    // For counts > 9, allow duplicates
+    for (let i = 0; i < count; i++) {
+      const number = Math.floor(Math.random() * 9) + 1;
+      questions.push({ 
+        number: number, 
+        correctAnswer: 10 - number 
+      });
+    }
   }
   
   return questions;
