@@ -112,44 +112,41 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
         isCorrect: null,
       });
     } else {
+      // Auto-decompose both numbers
+      const num1Tens = Math.floor(problem.num1 / 10) * 10;
+      const num1Units = problem.num1 % 10;
+      const num2Tens = Math.floor(problem.num2 / 10) * 10;
+      const num2Units = problem.num2 % 10;
+      
       setState({
-        currentPhase: 'number1',
+        currentPhase: 'finalAnswer',
         currentNumber: null,
         number1: { 
           value: problem.num1, 
-          isDecomposed: false, 
-          isSelectable: true,
-          tens: 0,
-          units: 0
+          isDecomposed: true, 
+          isSelectable: false,
+          tens: num1Tens,
+          units: num1Units
         },
         number2: { 
           value: problem.num2, 
-          isDecomposed: false, 
+          isDecomposed: true, 
           isSelectable: false,
-          tens: 0,
-          units: 0
+          tens: num2Tens,
+          units: num2Units
         },
         collectedPieces: [],
         splitClickedPieces: {
           tensClicked: false,
           unitsClicked: false,
         },
-        showFinalChoices: false,
+        showFinalChoices: true,
         selectedAnswer: null,
         isCorrect: null,
       });
     }
     setInteractionCount(0);
   }, [problem, showDecomposition]);
-
-  useEffect(() => {
-    if (state.number1.isDecomposed && state.number2.isDecomposed && !state.showFinalChoices) {
-      const timer = setTimeout(() => {
-        setState((prev: InteractiveState) => ({ ...prev, showFinalChoices: true, currentPhase: 'finalAnswer' }));
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [state.number1.isDecomposed, state.number2.isDecomposed, state.showFinalChoices]);
 
   const handleNumberClick = (numberKey: 'number1' | 'number2') => {
     if (!state[numberKey].isSelectable || state[numberKey].isDecomposed) return;
@@ -212,32 +209,12 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
           {/* Layer 1: Question */}
           <Box sx={{ mb: 2 }}>
         <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-          {showDecomposition ? 'Layer 1: Question' : 'Question'}
+          Layer 1: Question
         </Typography>
         <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mt: 1 }}>
-          {showDecomposition ? (
-            <>
-              <ClickableNumber
-                number={problem.num1}
-                isSelectable={state.number1.isSelectable}
-                isDecomposed={state.number1.isDecomposed}
-                onClick={() => handleNumberClick('number1')}
-              />
-              <Typography variant="h4" sx={{ alignSelf: 'center' }}>+</Typography>
-              <ClickableNumber
-                number={problem.num2}
-                isSelectable={state.number2.isSelectable}
-                isDecomposed={state.number2.isDecomposed}
-                onClick={() => handleNumberClick('number2')}
-              />
-            </>
-          ) : (
-            <>
-              <Typography variant="h4" sx={{ alignSelf: 'center' }}>{problem.num1}</Typography>
-              <Typography variant="h4" sx={{ alignSelf: 'center' }}>+</Typography>
-              <Typography variant="h4" sx={{ alignSelf: 'center' }}>{problem.num2}</Typography>
-            </>
-          )}
+          <Typography variant="h4" sx={{ alignSelf: 'center' }}>{problem.num1}</Typography>
+          <Typography variant="h4" sx={{ alignSelf: 'center' }}>+</Typography>
+          <Typography variant="h4" sx={{ alignSelf: 'center' }}>{problem.num2}</Typography>
         </Box>
       </Box>
 
