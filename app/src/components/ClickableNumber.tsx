@@ -49,9 +49,6 @@ const ClickableNumber: React.FC<ClickableNumberProps> = ({
       {isDecomposed && (
         <div className="checkmark">✓</div>
       )}
-      {isSelectable && !isDecomposed && (
-        <div className="click-hint">Tap me!</div>
-      )}
     </button>
   );
 };
