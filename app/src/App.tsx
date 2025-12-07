@@ -11,10 +11,7 @@ function QuestionCountRoute() {
   const navigate = useNavigate();
   const { mode } = useParams<{ mode: string }>();
 
-  console.log('### QuestionCountRoute - mode:', mode);
-
   const handleCountSelect = (count: number) => {
-    console.log('### handleCountSelect - mode:', mode, 'count:', count);
     navigate(`/${mode}/quiz/${count}`);
   };
 
@@ -24,21 +21,18 @@ function QuestionCountRoute() {
 function AdditionQuizRoute() {
   const { count } = useParams<{ count: string }>();
   const questionCount = useMemo(() => parseInt(count || '10'), [count]);
-  console.log('### AdditionQuizRoute - count:', count, 'parsed:', questionCount);
   return <QuizSession key={`addition-${count}`} questionCount={questionCount} />;
 }
 
 function RecognitionQuizRoute() {
   const { count } = useParams<{ count: string }>();
   const questionCount = useMemo(() => parseInt(count || '10'), [count]);
-  console.log('### RecognitionQuizRoute - count:', count, 'parsed:', questionCount);
   return <TenFrameQuiz key={`recognition-${count}`} mode="recognition" questionCount={questionCount} />;
 }
 
 function Make10QuizRoute() {
   const { count } = useParams<{ count: string }>();
   const questionCount = useMemo(() => parseInt(count || '10'), [count]);
-  console.log('### Make10QuizRoute - count:', count, 'parsed:', questionCount);
   return <TenFrameQuiz key={`make10-${count}`} mode="make10" questionCount={questionCount} />;
 }
 
@@ -47,7 +41,7 @@ function AppContent() {
   const location = useLocation();
 
   useEffect(() => {
-    console.log('### Current URL:', location.pathname);
+    // Track URL changes if needed
   }, [location.pathname]);
 
   const handleModeSelect = (mode: 'addition' | 'recognition' | 'make10') => {

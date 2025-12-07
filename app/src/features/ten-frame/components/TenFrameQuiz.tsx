@@ -13,32 +13,20 @@ interface TenFrameQuizProps {
 }
 
 export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode, questionCount = 10 }) => {
-  console.log('### TenFrameQuiz - mode:', mode, 'questionCount:', questionCount);
-  
   const [quizState, setQuizState] = useState<TenFrameQuizState>(() => {
-    console.log('### TenFrameQuiz - initializing state with questionCount:', questionCount);
-    try {
-      const questions = mode === 'recognition' 
-        ? generateRecognitionQuestions(questionCount)
-        : generateMake10Questions(questionCount);
-      
-      console.log('### TenFrameQuiz - generated questions:', questions.length);
-      
-      return {
-        sessionId: `${mode}-${Date.now()}`,
-        questions,
-        currentQuestionIndex: 0,
-        sessionResults: [],
-        sessionPhase: 'active',
-        startTime: new Date(),
-      };
-    } catch (error) {
-      console.error('### TenFrameQuiz - error generating questions:', error);
-      throw error;
-    }
+    const questions = mode === 'recognition' 
+      ? generateRecognitionQuestions(questionCount)
+      : generateMake10Questions(questionCount);
+    
+    return {
+      sessionId: `${mode}-${Date.now()}`,
+      questions,
+      currentQuestionIndex: 0,
+      sessionResults: [],
+      sessionPhase: 'active',
+      startTime: new Date(),
+    };
   });
-
-  console.log('### TenFrameQuiz - state initialized, phase:', quizState.sessionPhase);
 
   const handleQuestionComplete = useCallback((correct: boolean, interactions: number) => {
     if (!correct) return;

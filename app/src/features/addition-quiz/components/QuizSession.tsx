@@ -12,11 +12,8 @@ interface QuizSessionProps {
 }
 
 export const QuizSession: React.FC<QuizSessionProps> = ({ questionCount = 10 }) => {
-  console.log('### QuizSession - questionCount:', questionCount);
-  
   const [session, setSession] = useState<QuizSessionState>(() => {
     const questions = generateQuizProblems(questionCount);
-    console.log('### QuizSession - generated questions count:', questions.length);
     return {
       sessionId: Date.now().toString(),
       questions,
@@ -26,8 +23,6 @@ export const QuizSession: React.FC<QuizSessionProps> = ({ questionCount = 10 }) 
       startTime: new Date(),
     };
   });
-
-  console.log('### QuizSession - session.questions.length:', session.questions.length);
 
   const handleQuestionComplete = useCallback((correct: boolean, interactions: number) => {
     if (!correct) return; // Don't advance on wrong answer

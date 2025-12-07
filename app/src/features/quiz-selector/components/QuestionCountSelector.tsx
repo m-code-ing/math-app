@@ -6,13 +6,6 @@ interface QuestionCountSelectorProps {
 }
 
 export const QuestionCountSelector: React.FC<QuestionCountSelectorProps> = ({ onSelect }) => {
-  console.log('### QuestionCountSelector rendered');
-
-  const handleSelect = (count: number) => {
-    console.log('### QuestionCountSelector - button clicked, count:', count);
-    onSelect(count);
-  };
-
   return (
     <Box sx={{ p: 3, maxWidth: 600, mx: 'auto' }}>
       <Typography variant="h4" align="center" sx={{ mb: 4 }}>
@@ -28,7 +21,7 @@ export const QuestionCountSelector: React.FC<QuestionCountSelectorProps> = ({ on
             transition: 'all 0.2s',
             '&:hover': { elevation: 6, transform: 'translateY(-4px)' },
           }}
-          onClick={() => handleSelect(10)}
+          onClick={() => onSelect(10)}
         >
           <CardContent sx={{ textAlign: 'center', py: 5 }}>
             <Typography variant="h2" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
@@ -48,7 +41,7 @@ export const QuestionCountSelector: React.FC<QuestionCountSelectorProps> = ({ on
             transition: 'all 0.2s',
             '&:hover': { elevation: 6, transform: 'translateY(-4px)' },
           }}
-          onClick={() => handleSelect(20)}
+          onClick={() => onSelect(20)}
         >
           <CardContent sx={{ textAlign: 'center', py: 5 }}>
             <Typography variant="h2" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
