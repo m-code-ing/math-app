@@ -49,7 +49,11 @@ export class QuizService {
    * Get user statistics
    */
   getUserStats(): UserStats {
-    return this.storage.load<UserStats>(this.STORAGE_KEYS.USER_STATS) || DEFAULT_USER_STATS;
+    const loaded = this.storage.load<UserStats>(this.STORAGE_KEYS.USER_STATS);
+    if (loaded) return loaded;
+
+    // Return deep copy of defaults to avoid mutating the constant
+    return JSON.parse(JSON.stringify(DEFAULT_USER_STATS));
   }
 
   /**
@@ -101,7 +105,11 @@ export class QuizService {
    * Get user preferences
    */
   getPreferences(): UserPreferences {
-    return this.storage.load<UserPreferences>(this.STORAGE_KEYS.PREFERENCES) || DEFAULT_USER_PREFERENCES;
+    const loaded = this.storage.load<UserPreferences>(this.STORAGE_KEYS.PREFERENCES);
+    if (loaded) return loaded;
+
+    // Return deep copy of defaults to avoid mutating the constant
+    return JSON.parse(JSON.stringify(DEFAULT_USER_PREFERENCES));
   }
 
   /**
