@@ -168,30 +168,30 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
 
       {/* Layer 2: Ten-Frames for Easy Difficulty */}
       {!showDecomposition && (
-        <Box sx={{ mb: 2 }}>
-          <Divider sx={{ my: 2 }} />
-          <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+        <Box sx={{ mb: { xs: 1, sm: 2 } }}>
+          <Divider sx={{ my: { xs: 1, sm: 2 } }} />
+          <Typography variant="subtitle2" color="text.secondary" gutterBottom sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>
             Visual Helper
           </Typography>
           <Box sx={{ 
             display: 'flex', 
             flexDirection: { xs: 'column', sm: 'row' },
-            gap: { xs: 2, sm: 4 }, 
+            gap: { xs: 1, sm: 4 }, 
             justifyContent: 'center', 
             alignItems: 'center', 
-            mt: 2 
+            mt: { xs: 1, sm: 2 }
           }}>
             <Box sx={{ textAlign: 'center' }}>
-              <Typography variant="body2" sx={{ mb: 1 }}>{problem.num1}</Typography>
+              <Typography variant="body2" sx={{ mb: { xs: 0.5, sm: 1 }, fontSize: { xs: '0.875rem', sm: '1rem' } }}>{problem.num1}</Typography>
               <TenFrame filledCount={problem.num1} />
             </Box>
-            <Typography variant="h4">+</Typography>
+            <Typography variant="h4" sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}>+</Typography>
             <Box sx={{ textAlign: 'center' }}>
-              <Typography variant="body2" sx={{ mb: 1 }}>{problem.num2}</Typography>
+              <Typography variant="body2" sx={{ mb: { xs: 0.5, sm: 1 }, fontSize: { xs: '0.875rem', sm: '1rem' } }}>{problem.num2}</Typography>
               <TenFrame filledCount={problem.num2} />
             </Box>
           </Box>
-          <Divider sx={{ my: 2 }} />
+          <Divider sx={{ my: { xs: 1, sm: 2 } }} />
         </Box>
       )}
 
