@@ -150,8 +150,7 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
           ...prev,
           currentPhase: 'complete',
           selectedAnswer,
-          isCorrect,
-          showFinalChoices: false
+          isCorrect
         }));
         
         // Complete after showing the visual feedback
@@ -247,7 +246,7 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
 
           {/* Right Section - Second Number Split */}
           <div className="split-section right-split">
-            {state.currentPhase === 'finalAnswer' && (
+            {(state.currentPhase === 'finalAnswer' || state.currentPhase === 'complete') && (
               <div className="split-equation">
                 <button 
                   className={`piece-button tens-piece ${state.number2.isDecomposed ? 'collected' : ''}`}
