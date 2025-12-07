@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Box, Container } from '@mui/material';
 import { QuizSessionState, QuestionResult } from '../types/Quiz';
-import { generateQuizProblems } from '../utils/problemGenerator';
+import { questionGenerationService } from '../../../shared/services';
 import { QuizHeader } from '../../../shared/components/QuizHeader';
 import { TransitionScreen } from '../../../shared/components/TransitionScreen';
 import { SummaryScreen } from '../../../shared/components/SummaryScreen';
@@ -13,7 +13,7 @@ interface QuizSessionProps {
 
 export const QuizSession: React.FC<QuizSessionProps> = ({ questionCount = 10 }) => {
   const [session, setSession] = useState<QuizSessionState>(() => {
-    const questions = generateQuizProblems(questionCount);
+    const questions = questionGenerationService.generateAdditionProblems(questionCount);
     return {
       sessionId: Date.now().toString(),
       questions,
@@ -57,7 +57,7 @@ export const QuizSession: React.FC<QuizSessionProps> = ({ questionCount = 10 }) 
   const handleTryAgain = useCallback(() => {
     setSession({
       sessionId: Date.now().toString(),
-      questions: generateQuizProblems(questionCount),
+      questions: questionGenerationService.generateAdditionProblems(questionCount),
       currentQuestionIndex: 0,
       sessionResults: [],
       sessionPhase: 'active',

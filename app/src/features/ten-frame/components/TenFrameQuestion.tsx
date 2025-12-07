@@ -4,7 +4,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { TenFrame } from './TenFrame';
 import { TenFrameQuestion as TenFrameQuestionType, TenFrameMode } from '../types/TenFrame';
-import { generateAnswerChoices } from '../utils/tenFrameGenerator';
+import { questionGenerationService } from '../../../shared/services';
 
 interface TenFrameQuestionProps {
   question: TenFrameQuestionType;
@@ -23,7 +23,7 @@ export const TenFrameQuestion: React.FC<TenFrameQuestionProps> = ({
   const [interactions, setInteractions] = useState(0);
 
   useEffect(() => {
-    setChoices(generateAnswerChoices(question.correctAnswer, mode));
+    setChoices(questionGenerationService.generateAnswerChoices(question.correctAnswer, mode));
     setSelectedAnswer(null);
     setWrongAnswers(new Set());
     setInteractions(0);

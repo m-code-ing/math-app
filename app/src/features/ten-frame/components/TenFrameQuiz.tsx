@@ -5,7 +5,7 @@ import { QuizHeader } from '../../../shared/components/QuizHeader';
 import { TransitionScreen } from '../../../shared/components/TransitionScreen';
 import { SummaryScreen } from '../../../shared/components/SummaryScreen';
 import { TenFrameMode, TenFrameQuizState, TenFrameResult } from '../types/TenFrame';
-import { generateRecognitionQuestions, generateMake10Questions } from '../utils/tenFrameGenerator';
+import { questionGenerationService } from '../../../shared/services';
 
 interface TenFrameQuizProps {
   mode: TenFrameMode;
@@ -15,8 +15,8 @@ interface TenFrameQuizProps {
 export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode, questionCount = 10 }) => {
   const [quizState, setQuizState] = useState<TenFrameQuizState>(() => {
     const questions = mode === 'recognition' 
-      ? generateRecognitionQuestions(questionCount)
-      : generateMake10Questions(questionCount);
+      ? questionGenerationService.generateRecognitionQuestions(questionCount)
+      : questionGenerationService.generateMake10Questions(questionCount);
     
     return {
       sessionId: `${mode}-${Date.now()}`,
@@ -26,6 +26,23 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode, questionCount 
       sessionPhase: 'active',
       startTime: new Date(),
     };
+  });
+      
+      console.log('### TenFrameQuiz - generated questions:', questions.length);
+      
+      return {
+        sessionId: `${mode}-${Date.now()}`,
+        questions,
+        currentQuestionIndex: 0,
+        sessionResults: [],
+        sessionPhase: 'active',
+        startTime: new Date(),
+      };
+    } catch (error) {
+      console.error('### TenFrameQuiz - error generating questions:', error);
+      throw error;
+    }
+>>>>>>> da184eb (Refactor to use QuestionGenerationService)
   });
 
   const handleQuestionComplete = useCallback((correct: boolean, interactions: number) => {
@@ -68,8 +85,8 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode, questionCount 
 
   const handleTryAgain = useCallback(() => {
     const questions = mode === 'recognition' 
-      ? generateRecognitionQuestions(questionCount)
-      : generateMake10Questions(questionCount);
+      ? questionGenerationService.generateRecognitionQuestions(questionCount)
+      : questionGenerationService.generateMake10Questions(questionCount);
     
     setQuizState({
       sessionId: `${mode}-${Date.now()}`,
