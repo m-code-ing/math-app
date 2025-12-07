@@ -27,23 +27,6 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode, questionCount 
       startTime: new Date(),
     };
   });
-      
-      console.log('### TenFrameQuiz - generated questions:', questions.length);
-      
-      return {
-        sessionId: `${mode}-${Date.now()}`,
-        questions,
-        currentQuestionIndex: 0,
-        sessionResults: [],
-        sessionPhase: 'active',
-        startTime: new Date(),
-      };
-    } catch (error) {
-      console.error('### TenFrameQuiz - error generating questions:', error);
-      throw error;
-    }
->>>>>>> da184eb (Refactor to use QuestionGenerationService)
-  });
 
   const handleQuestionComplete = useCallback((correct: boolean, interactions: number) => {
     if (!correct) return;
