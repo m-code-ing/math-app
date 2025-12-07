@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import { QuestionResult } from '../types/Quiz';
+import { QuestionResult } from '../../features/addition-quiz/types/Quiz';
 
 interface SummaryScreenProps {
   totalQuestions: number;

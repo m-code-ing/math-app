@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '../../utils/test-utils';
-import { QuizHeader } from '../QuizHeader';
+import { QuizHeader } from '../../../shared/components/QuizHeader';
 
 describe('QuizHeader', () => {
   it('displays current question number', () => {

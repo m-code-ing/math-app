@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
-import { QuizSession } from './components/QuizSession';
-import { TenFrameQuiz } from './components/TenFrameQuiz';
-import { QuizModeSelector } from './components/QuizModeSelector';
-import { NavBar } from './components/NavBar';
+import { QuizSession } from './features/addition-quiz/components/QuizSession';
+import { TenFrameQuiz } from './features/ten-frame/components/TenFrameQuiz';
+import { QuizModeSelector } from './features/quiz-selector/components/QuizModeSelector';
+import { NavBar } from './shared/components/NavBar';
 
 function AppContent() {
   const navigate = useNavigate();

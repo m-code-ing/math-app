@@ -2,9 +2,9 @@ import React, { useState, useCallback } from 'react';
 import { Box, Container } from '@mui/material';
 import { QuizSessionState, QuestionResult } from '../types/Quiz';
 import { generateQuizProblems } from '../utils/problemGenerator';
-import { QuizHeader } from './QuizHeader';
-import { TransitionScreen } from './TransitionScreen';
-import { SummaryScreen } from './SummaryScreen';
+import { QuizHeader } from '../../../shared/components/QuizHeader';
+import { TransitionScreen } from '../../../shared/components/TransitionScreen';
+import { SummaryScreen } from '../../../shared/components/SummaryScreen';
 import InteractiveMathProblem from './InteractiveMathProblem';
 
 export const QuizSession: React.FC = () => {

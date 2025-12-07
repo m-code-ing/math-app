@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { Box, Paper } from '@mui/material';
 import { TenFrameQuestion } from './TenFrameQuestion';
-import { QuizHeader } from './QuizHeader';
-import { TransitionScreen } from './TransitionScreen';
-import { SummaryScreen } from './SummaryScreen';
+import { QuizHeader } from '../../../shared/components/QuizHeader';
+import { TransitionScreen } from '../../../shared/components/TransitionScreen';
+import { SummaryScreen } from '../../../shared/components/SummaryScreen';
 import { TenFrameMode, TenFrameQuizState, TenFrameResult } from '../types/TenFrame';
 import { generateRecognitionQuestions, generateMake10Questions } from '../utils/tenFrameGenerator';
 

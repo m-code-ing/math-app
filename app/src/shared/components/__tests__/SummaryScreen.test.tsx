@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '../../utils/test-utils';
 import userEvent from '@testing-library/user-event';
-import { SummaryScreen } from '../SummaryScreen';
+import { SummaryScreen } from '../../../shared/components/SummaryScreen';
 
 describe('SummaryScreen', () => {
   it('displays correct score', () => {

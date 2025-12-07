@@ -1,32 +1,33 @@
 import React from 'react';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { render } from '../../utils/test-utils';
+import { render } from '../../../../shared/utils/test-utils';
 import { TenFrame } from '../TenFrame';
 import { TenFrameQuestion } from '../TenFrameQuestion';
 import { TenFrameQuiz } from '../TenFrameQuiz';
 
 describe('TenFrame', () => {
   it('renders correct number of filled dots', () => {
-    const { container } = render(<TenFrame filledCount={7} />);
-    const dots = container.querySelectorAll('[style*="border-radius: 50%"]');
+    render(<TenFrame filledCount={7} />);
+    const dots = screen.getAllByTestId('ten-frame-dot');
     expect(dots.length).toBe(7);
   });
 
   it('renders 10 boxes total', () => {
-    const { container } = render(<TenFrame filledCount={5} />);
-    const boxes = container.querySelectorAll('[style*="width: 60px"]');
-    expect(boxes.length).toBe(10);
+    render(<TenFrame filledCount={5} />);
+    const filled = screen.getAllByTestId('ten-frame-filled');
+    const empty = screen.getAllByTestId('ten-frame-empty');
+    expect(filled.length + empty.length).toBe(10);
   });
 
   it('handles edge case of 0 filled', () => {
-    const { container } = render(<TenFrame filledCount={0} />);
-    const dots = container.querySelectorAll('[style*="border-radius: 50%"]');
-    expect(dots.length).toBe(0);
+    render(<TenFrame filledCount={0} />);
+    const empty = screen.getAllByTestId('ten-frame-empty');
+    expect(empty.length).toBe(10);
   });
 
   it('handles edge case of 10 filled', () => {
-    const { container } = render(<TenFrame filledCount={10} />);
-    const dots = container.querySelectorAll('[style*="border-radius: 50%"]');
+    render(<TenFrame filledCount={10} />);
+    const dots = screen.getAllByTestId('ten-frame-dot');
     expect(dots.length).toBe(10);
   });
 });
