@@ -4,6 +4,7 @@
 - **[REQUIREMENTS.md](REQUIREMENTS.md)** - Original project requirements and goals
 - **[FEATURES.md](FEATURES.md)** - Current implemented features and capabilities
 - **[COMPONENT_ARCHITECTURE.md](COMPONENT_ARCHITECTURE.md)** - Component structure and relationships
+- **[DOMAIN_MODELS.md](DOMAIN_MODELS.md)** - Core data entities and business logic
 
 ## Design Documents
 - **[10_QUESTION_FLOW_DESIGN.md](10_QUESTION_FLOW_DESIGN.md)** - Addition quiz flow design
@@ -14,5 +15,6 @@
 
 ## Quick Links
 - Start here: [FEATURES.md](FEATURES.md) - See what the app can do
+- Understand data: [DOMAIN_MODELS.md](DOMAIN_MODELS.md) - Core entities
 - For developers: [COMPONENT_ARCHITECTURE.md](COMPONENT_ARCHITECTURE.md)
 - For new features: Design docs in this index
