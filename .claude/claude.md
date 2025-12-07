@@ -11,7 +11,7 @@ A math learning web app for children (ages 5-7) focused on basic addition and su
 
 ## Important Files
 - `REQUIREMENTS.md` - Project requirements and specifications
-- `src/` - Main application code
+- `app/src/` - Main application code
 - `.claude/agents/` - Specialized AI agents for different aspects
 
 ## Development Guidelines
