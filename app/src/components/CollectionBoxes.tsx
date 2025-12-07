@@ -1,42 +1,23 @@
 import React from 'react';
-import './CollectionBoxes.css';
+import { Box, Paper, Typography } from '@mui/material';
 
 interface CollectionBoxesProps {
-  tensCount: number;
-  unitsCount: number;
+  tens: number;
+  units: number;
 }
 
-const CollectionBoxes: React.FC<CollectionBoxesProps> = ({
-  tensCount,
-  unitsCount
-}) => {
+const CollectionBoxes: React.FC<CollectionBoxesProps> = ({ tens, units }) => {
   return (
-    <div className="collection-boxes">
-      <div className="collection-box tens-box">
-        <div className="collected-items">
-          {Array.from({ length: tensCount }, (_, i) => (
-            <div key={`collected-ten-${i}`} className="collected-ten">
-              <div className="ten-grid-small">
-                {Array.from({ length: 10 }, (_, j) => (
-                  <div key={`unit-${j}`} className="grid-unit-small"></div>
-                ))}
-              </div>
-              <span className="ten-value">10</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="collection-box units-box">
-        <div className="collected-items">
-          {Array.from({ length: unitsCount }, (_, i) => (
-            <div key={`collected-unit-${i}`} className="collected-unit">
-              <div className="unit-circle">{1}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', mt: 3 }}>
+      <Paper elevation={2} sx={{ p: 3, minWidth: 120, bgcolor: 'warning.light' }}>
+        <Typography variant="h6" gutterBottom>Tens</Typography>
+        <Typography variant="h3" color="warning.dark">{tens}</Typography>
+      </Paper>
+      <Paper elevation={2} sx={{ p: 3, minWidth: 120, bgcolor: 'secondary.light' }}>
+        <Typography variant="h6" gutterBottom>Units</Typography>
+        <Typography variant="h3" color="secondary.dark">{units}</Typography>
+      </Paper>
+    </Box>
   );
 };
 

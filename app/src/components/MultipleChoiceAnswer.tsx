@@ -1,116 +1,73 @@
 import React, { useState, useEffect } from 'react';
-import './MultipleChoiceAnswer.css';
+import { Box, Button, Typography } from '@mui/material';
 
 interface MultipleChoiceAnswerProps {
-  choices: number[];
   correctAnswer: number;
-  onSelect: (selectedAnswer: number) => void;
+  onAnswerSelected: (isCorrect: boolean) => void;
 }
 
 const MultipleChoiceAnswer: React.FC<MultipleChoiceAnswerProps> = ({
-  choices,
   correctAnswer,
-  onSelect
+  onAnswerSelected,
 }) => {
-  const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
-  const [incorrectChoices, setIncorrectChoices] = useState<Set<number>>(new Set());
-  const [correctChoiceSelected, setCorrectChoiceSelected] = useState(false);
-  const [feedbackTimeout, setFeedbackTimeout] = useState<NodeJS.Timeout | null>(null);
-  
-  // Cleanup timeout on unmount
+  const [choices, setChoices] = useState<number[]>([]);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+
   useEffect(() => {
-    return () => {
-      if (feedbackTimeout) {
-        clearTimeout(feedbackTimeout);
+    const generateChoices = () => {
+      const options = new Set<number>([correctAnswer]);
+      while (options.size < 4) {
+        const offset = Math.floor(Math.random() * 20) - 10;
+        const choice = correctAnswer + offset;
+        if (choice > 0 && choice !== correctAnswer) {
+          options.add(choice);
+        }
       }
+      return Array.from(options).sort((a, b) => a - b);
     };
-  }, [feedbackTimeout]);
+    setChoices(generateChoices());
+  }, [correctAnswer]);
 
-  const handleChoiceClick = (choice: number) => {
-    // Don't allow clicking on already marked incorrect choices or if correct answer already selected
-    if (incorrectChoices.has(choice) || correctChoiceSelected) {
-      return;
-    }
-    
-    setSelectedChoice(choice);
-    
-    if (choice === correctAnswer) {
-      // Permanently mark correct answer as selected
-      setCorrectChoiceSelected(true);
-    } else {
-      // If this is an incorrect answer, permanently mark it as incorrect
-      setIncorrectChoices(prev => new Set(prev).add(choice));
-    }
-    
-    // Clear any existing timeout
-    if (feedbackTimeout) {
-      clearTimeout(feedbackTimeout);
-    }
-    
-    // Show feedback briefly, then clear selection (but keep locked states)
-    const timeout = setTimeout(() => {
-      setSelectedChoice(null);
-      setFeedbackTimeout(null);
-    }, 1500);
-    
-    setFeedbackTimeout(timeout);
-    onSelect(choice);
-  };
-
-  const getChoiceClassName = (choice: number) => {
-    let className = 'choice-button';
-    
-    // If this choice is permanently marked as incorrect
-    if (incorrectChoices.has(choice)) {
-      className += ' incorrect locked';
-    }
-    // If this is the correct answer and it's been selected
-    else if (choice === correctAnswer && correctChoiceSelected) {
-      className += ' correct locked';
-    }
-    // If this choice is currently selected (for temporary feedback)
-    else if (selectedChoice === choice) {
-      className += choice === correctAnswer ? ' correct' : ' incorrect';
-    }
-    
-    return className;
+  const handleAnswerClick = (answer: number) => {
+    setSelectedAnswer(answer);
+    setShowFeedback(true);
+    const isCorrect = answer === correctAnswer;
+    setTimeout(() => onAnswerSelected(isCorrect), 1000);
   };
 
   return (
-    <div className="multiple-choice-answer">
-      <div className="choices-container">
-        {choices.map((choice, index) => (
-          <button
-            key={`choice-${choice}-${index}`}
-            className={getChoiceClassName(choice)}
-            onClick={() => handleChoiceClick(choice)}
-            disabled={incorrectChoices.has(choice) || correctChoiceSelected}
-            aria-label={`Answer choice ${choice}`}
+    <Box sx={{ mt: 4 }}>
+      <Typography variant="h5" gutterBottom>
+        What's the answer?
+      </Typography>
+      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, maxWidth: 400 }}>
+        {choices.map((choice) => (
+          <Button
+            key={choice}
+            onClick={() => handleAnswerClick(choice)}
+            disabled={showFeedback}
+            variant="contained"
+            sx={{
+              minHeight: 60,
+              fontSize: '1.5rem',
+              bgcolor: showFeedback
+                ? choice === correctAnswer
+                  ? 'success.main'
+                  : choice === selectedAnswer
+                  ? 'error.main'
+                  : 'grey.300'
+                : 'primary.main',
+              '&:hover': {
+                bgcolor: showFeedback ? undefined : 'primary.dark',
+              },
+            }}
           >
-            <span className="choice-number">{choice}</span>
-            {(selectedChoice === choice || incorrectChoices.has(choice) || (choice === correctAnswer && correctChoiceSelected)) && (
-              <div className="selection-indicator">
-                {choice === correctAnswer ? '✓' : '✗'}
-              </div>
-            )}
-          </button>
+            {choice}
+          </Button>
         ))}
-      </div>
-      
-      {selectedChoice && (
-        <div className="feedback-message">
-          {selectedChoice === correctAnswer ? (
-            <div className="success-feedback">
-              ✓ Correct!
-            </div>
-          ) : (
-            <div className="try-again-feedback">
-              ✗ Try again
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+      </Box>
+    </Box>
   );
 };
 

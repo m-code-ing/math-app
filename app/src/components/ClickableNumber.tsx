@@ -1,5 +1,6 @@
 import React from 'react';
-import './ClickableNumber.css';
+import { Button, Box } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 interface ClickableNumberProps {
   number: number;
@@ -14,42 +15,36 @@ const ClickableNumber: React.FC<ClickableNumberProps> = ({
   isDecomposed,
   onClick
 }) => {
-  const handleClick = () => {
-    if (isSelectable) {
-      onClick();
-    }
-  };
-
-  const getClassName = () => {
-    let className = 'clickable-number';
-    
-    if (!isSelectable) {
-      className += ' disabled';
-    }
-    
-    if (isDecomposed) {
-      className += ' decomposed';
-    }
-    
-    if (isSelectable && !isDecomposed) {
-      className += ' selectable';
-    }
-    
-    return className;
-  };
-
   return (
-    <button
-      className={getClassName()}
-      onClick={handleClick}
+    <Button
+      onClick={onClick}
       disabled={!isSelectable}
-      aria-label={`Number ${number}${isSelectable ? ', click to break down' : ', already used'}`}
+      variant="contained"
+      sx={{
+        position: 'relative',
+        minWidth: 120,
+        minHeight: 80,
+        fontSize: '2rem',
+        fontWeight: 'bold',
+        borderRadius: 3,
+        bgcolor: isDecomposed ? 'info.main' : 'success.main',
+        '&:hover': {
+          bgcolor: isDecomposed ? 'info.dark' : 'success.dark',
+        },
+        '&.Mui-disabled': {
+          bgcolor: 'grey.400',
+          color: 'white',
+          opacity: 0.6,
+        },
+      }}
     >
-      <span className="number-value">{number}</span>
+      {number}
       {isDecomposed && (
-        <div className="checkmark">✓</div>
+        <Box sx={{ position: 'absolute', top: 5, right: 5 }}>
+          <CheckCircleIcon sx={{ color: 'success.light', fontSize: 25 }} />
+        </Box>
       )}
-    </button>
+    </Button>
   );
 };
 
