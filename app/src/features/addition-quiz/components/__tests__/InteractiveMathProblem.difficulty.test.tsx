@@ -30,8 +30,7 @@ describe('InteractiveMathProblem - Difficulty Modes', () => {
         />
       );
 
-      expect(screen.getByText('Question')).toBeInTheDocument();
-      // Numbers appear in both question and ten-frame labels
+      // Easy mode doesn't show "Question" label, just the numbers
       expect(screen.getAllByText('3').length).toBeGreaterThan(0);
       expect(screen.getAllByText('5').length).toBeGreaterThan(0);
     });
@@ -82,7 +81,7 @@ describe('InteractiveMathProblem - Difficulty Modes', () => {
   });
 
   describe('Hard difficulty (showDecomposition=true)', () => {
-    it('should show Layer 1 with clickable numbers', () => {
+    it('should show Layer 1 with static numbers', () => {
       const mockOnComplete = jest.fn();
       render(
         <InteractiveMathProblem
@@ -94,6 +93,20 @@ describe('InteractiveMathProblem - Difficulty Modes', () => {
       );
 
       expect(screen.getByText('Layer 1: Question')).toBeInTheDocument();
+    });
+
+    it('should show decomposition automatically', () => {
+      const mockOnComplete = jest.fn();
+      render(
+        <InteractiveMathProblem
+          problem={hardProblem}
+          onComplete={mockOnComplete}
+          showDecomposition={true}
+          maxAnswerValue={50}
+        />
+      );
+
+      expect(screen.getByText('Layer 2: Break Down Numbers')).toBeInTheDocument();
     });
 
     it('should not show ten-frame visual helper', () => {

@@ -13,33 +13,28 @@ describe('InteractiveMathProblem Integration', () => {
 
   it('completes full problem flow correctly', async () => {
     const onComplete = jest.fn();
-    render(<InteractiveMathProblem problem={mockProblem} onComplete={onComplete} />);
+    render(<InteractiveMathProblem problem={mockProblem} onComplete={onComplete} showDecomposition={true} />);
 
-    expect(screen.getByText('23')).toBeInTheDocument();
-    expect(screen.getByText('45')).toBeInTheDocument();
-
-    await userEvent.click(screen.getByText('23'));
+    // Numbers are automatically decomposed now
     await waitFor(() => {
+      expect(screen.getByText('Layer 2: Break Down Numbers')).toBeInTheDocument();
       expect(screen.getByText('20')).toBeInTheDocument();
       expect(screen.getByText('3')).toBeInTheDocument();
-    });
-
-    await userEvent.click(screen.getByText('45'));
-    await waitFor(() => {
       expect(screen.getByText('40')).toBeInTheDocument();
       expect(screen.getByText('5')).toBeInTheDocument();
     });
 
+    // Answer choices should be visible immediately
     await waitFor(() => {
       expect(screen.getByText('What\'s the answer?')).toBeInTheDocument();
-    }, { timeout: 3000 });
+    });
 
     const correctButton = await waitFor(() => {
       const buttons = screen.getAllByRole('button');
       const button = buttons.find(btn => btn.textContent === '68');
       expect(button).toBeDefined();
       return button!;
-    }, { timeout: 2000 });
+    });
 
     await userEvent.click(correctButton);
 
@@ -50,21 +45,16 @@ describe('InteractiveMathProblem Integration', () => {
 
   it('allows retry on incorrect answer', async () => {
     const onComplete = jest.fn();
-    render(<InteractiveMathProblem problem={mockProblem} onComplete={onComplete} />);
+    render(<InteractiveMathProblem problem={mockProblem} onComplete={onComplete} showDecomposition={true} />);
 
-    await userEvent.click(screen.getByText('23'));
+    // Wait for decomposition to appear automatically
     await waitFor(() => {
-      expect(screen.getByText('20')).toBeInTheDocument();
-    });
-
-    await userEvent.click(screen.getByText('45'));
-    await waitFor(() => {
-      expect(screen.getByText('40')).toBeInTheDocument();
+      expect(screen.getByText('Layer 2: Break Down Numbers')).toBeInTheDocument();
     });
 
     await waitFor(() => {
       expect(screen.getByText('What\'s the answer?')).toBeInTheDocument();
-    }, { timeout: 3000 });
+    });
 
     const wrongButton = await waitFor(() => {
       const buttons = screen.getAllByRole('button');
@@ -77,7 +67,7 @@ describe('InteractiveMathProblem Integration', () => {
       );
       expect(button).toBeDefined();
       return button!;
-    }, { timeout: 2000 });
+    });
     
     await userEvent.click(wrongButton);
 
