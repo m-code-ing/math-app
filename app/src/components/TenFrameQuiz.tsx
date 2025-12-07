@@ -30,30 +30,32 @@ export const TenFrameQuiz: React.FC<TenFrameQuizProps> = ({ mode }) => {
   const handleQuestionComplete = useCallback((correct: boolean, interactions: number) => {
     if (!correct) return;
 
-    const result: TenFrameResult = {
-      questionIndex: quizState.currentQuestionIndex,
-      tenFrameQuestion: quizState.questions[quizState.currentQuestionIndex],
-      correct: true,
-      interactions,
-      timeSpent: Date.now() - quizState.startTime.getTime(),
-    };
+    setQuizState(prev => {
+      const result: TenFrameResult = {
+        questionIndex: prev.currentQuestionIndex,
+        tenFrameQuestion: prev.questions[prev.currentQuestionIndex],
+        correct: true,
+        interactions,
+        timeSpent: Date.now() - prev.startTime.getTime(),
+      };
 
-    const newResults = [...quizState.sessionResults, result];
+      const newResults = [...prev.sessionResults, result];
 
-    if (quizState.currentQuestionIndex === quizState.questions.length - 1) {
-      setQuizState(prev => ({
-        ...prev,
-        sessionResults: newResults,
-        sessionPhase: 'summary',
-      }));
-    } else {
-      setQuizState(prev => ({
-        ...prev,
-        sessionResults: newResults,
-        sessionPhase: 'transition',
-      }));
-    }
-  }, [quizState]);
+      if (prev.currentQuestionIndex === prev.questions.length - 1) {
+        return {
+          ...prev,
+          sessionResults: newResults,
+          sessionPhase: 'summary',
+        };
+      } else {
+        return {
+          ...prev,
+          sessionResults: newResults,
+          sessionPhase: 'transition',
+        };
+      }
+    });
+  }, []);
 
   const handleTransitionComplete = useCallback(() => {
     setQuizState(prev => ({
