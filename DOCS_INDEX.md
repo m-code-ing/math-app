@@ -9,6 +9,8 @@
 - **[10_QUESTION_FLOW_DESIGN.md](10_QUESTION_FLOW_DESIGN.md)** - Addition quiz flow design
 - **[10_FRAME_FEATURE_DESIGN.md](10_FRAME_FEATURE_DESIGN.md)** - 10-frame visual learning feature design
 - **[NAVIGATION_FEATURE.md](NAVIGATION_FEATURE.md)** - Navigation and routing design
+- **[PERSISTENT_STATE_FEATURE.md](PERSISTENT_STATE_FEATURE.md)** - Persistent state and progress tracking design
+- **[PROJECT_RESTRUCTURE.md](PROJECT_RESTRUCTURE.md)** - Feature-based architecture restructure
 
 ## Quick Links
 - Start here: [FEATURES.md](FEATURES.md) - See what the app can do
