@@ -4,7 +4,6 @@ import { InteractiveState, MathProblem } from '../types/InteractiveMath';
 import ClickableNumber from './ClickableNumber';
 import MultipleChoiceAnswer from './MultipleChoiceAnswer';
 import NumberDecomposition from './NumberDecomposition';
-import CollectionBoxes from './CollectionBoxes';
 
 interface InteractiveMathProblemProps {
   problem: MathProblem;
@@ -59,38 +58,17 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
         tens,
         units,
       },
-      currentPhase: numberKey === 'number1' ? 'number2' : 'collection',
+      currentPhase: numberKey === 'number1' ? 'number2' : 'finalAnswer',
       number2: numberKey === 'number1' ? { ...prev.number2, isSelectable: true } : prev.number2,
+      showFinalChoices: numberKey === 'number2',
     }));
     setInteractionCount(c => c + 1);
-  };
-
-  const handlePieceClick = (type: 'tens' | 'units', numberKey: 'number1' | 'number2') => {
-    const piece = { type, value: state[numberKey][type], from: numberKey };
-    setState(prev => ({
-      ...prev,
-      collectedPieces: [...prev.collectedPieces, piece],
-      splitClickedPieces: {
-        ...prev.splitClickedPieces,
-        [`${type}Clicked`]: true,
-      },
-    }));
-    setInteractionCount(c => c + 1);
-
-    if (state.collectedPieces.length === 3) {
-      setTimeout(() => {
-        setState(prev => ({ ...prev, showFinalChoices: true }));
-      }, 500);
-    }
   };
 
   const handleAnswerSelected = (isCorrect: boolean) => {
-    setState(prev => ({ ...prev, isCorrect }));
+    setState(prev => ({ ...prev, isCorrect, currentPhase: 'complete' }));
     setTimeout(() => onComplete(isCorrect, interactionCount + 1), 500);
   };
-
-  const totalTens = state.number1.tens + state.number2.tens;
-  const totalUnits = state.number1.units + state.number2.units;
 
   return (
     <Paper elevation={3} sx={{ p: 4, maxWidth: 800, mx: 'auto' }}>
@@ -132,10 +110,6 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
             units={state.number2.units}
           />
         </Box>
-      )}
-
-      {state.currentPhase === 'collection' && (
-        <CollectionBoxes tens={totalTens} units={totalUnits} />
       )}
 
       {state.showFinalChoices && (
