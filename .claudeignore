@@ -1,0 +1,26 @@
+# Dependencies
+node_modules
+app/node_modules
+
+# Build outputs
+dist
+build
+app/build
+
+# Version control
+.git
+
+# IDE
+.vscode
+.idea
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test outputs
+.test-outputs
+
+# Lock files (large and not needed for context)
+package-lock.json
+app/package-lock.json
