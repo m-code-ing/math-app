@@ -1,0 +1,16 @@
+# Math App - Documentation Index
+
+## Overview Documents
+- **[REQUIREMENTS.md](REQUIREMENTS.md)** - Original project requirements and goals
+- **[FEATURES.md](FEATURES.md)** - Current implemented features and capabilities
+- **[COMPONENT_ARCHITECTURE.md](COMPONENT_ARCHITECTURE.md)** - Component structure and relationships
+
+## Design Documents
+- **[10_QUESTION_FLOW_DESIGN.md](10_QUESTION_FLOW_DESIGN.md)** - Addition quiz flow design
+- **[10_FRAME_FEATURE_DESIGN.md](10_FRAME_FEATURE_DESIGN.md)** - 10-frame visual learning feature design
+- **[NAVIGATION_FEATURE.md](NAVIGATION_FEATURE.md)** - Navigation and routing design
+
+## Quick Links
+- Start here: [FEATURES.md](FEATURES.md) - See what the app can do
+- For developers: [COMPONENT_ARCHITECTURE.md](COMPONENT_ARCHITECTURE.md)
+- For new features: Design docs in this index

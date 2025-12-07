@@ -4,6 +4,7 @@ import './App.css';
 import { QuizSession } from './components/QuizSession';
 import { TenFrameQuiz } from './components/TenFrameQuiz';
 import { QuizModeSelector } from './components/QuizModeSelector';
+import { NavBar } from './components/NavBar';
 
 function AppContent() {
   const navigate = useNavigate();
@@ -13,12 +14,15 @@ function AppContent() {
   };
 
   return (
-    <Routes>
-      <Route path="/" element={<QuizModeSelector onSelect={handleModeSelect} />} />
-      <Route path="/addition" element={<QuizSession />} />
-      <Route path="/recognition" element={<TenFrameQuiz mode="recognition" />} />
-      <Route path="/make10" element={<TenFrameQuiz mode="make10" />} />
-    </Routes>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<QuizModeSelector onSelect={handleModeSelect} />} />
+        <Route path="/addition" element={<QuizSession />} />
+        <Route path="/recognition" element={<TenFrameQuiz mode="recognition" />} />
+        <Route path="/make10" element={<TenFrameQuiz mode="make10" />} />
+      </Routes>
+    </>
   );
 }
 
