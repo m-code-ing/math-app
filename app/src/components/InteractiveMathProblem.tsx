@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Paper } from '@mui/material';
+import { Box, Typography, Paper, Divider } from '@mui/material';
 import { InteractiveState, MathProblem } from '../types/InteractiveMath';
 import ClickableNumber from './ClickableNumber';
 import MultipleChoiceAnswer from './MultipleChoiceAnswer';
@@ -93,51 +93,71 @@ const InteractiveMathProblem: React.FC<InteractiveMathProblemProps> = ({
 
   return (
     <Paper elevation={3} sx={{ p: 4, maxWidth: 800, mx: 'auto' }}>
-      <Typography variant="h3" gutterBottom textAlign="center">
-        {problem.num1} + {problem.num2} = ?
-      </Typography>
-
-      <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', my: 4 }}>
-        <ClickableNumber
-          number={problem.num1}
-          isSelectable={state.number1.isSelectable}
-          isDecomposed={state.number1.isDecomposed}
-          onClick={() => handleNumberClick('number1')}
-        />
-        <Typography variant="h3" sx={{ alignSelf: 'center' }}>+</Typography>
-        <ClickableNumber
-          number={problem.num2}
-          isSelectable={state.number2.isSelectable}
-          isDecomposed={state.number2.isDecomposed}
-          onClick={() => handleNumberClick('number2')}
-        />
+      {/* Layer 1: Question with Clickable Numbers */}
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="h6" color="text.secondary" gutterBottom>
+          Layer 1: Question
+        </Typography>
+        <Typography variant="h3" textAlign="center" gutterBottom>
+          {problem.num1} + {problem.num2} = ?
+        </Typography>
+        <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', mt: 3 }}>
+          <ClickableNumber
+            number={problem.num1}
+            isSelectable={state.number1.isSelectable}
+            isDecomposed={state.number1.isDecomposed}
+            onClick={() => handleNumberClick('number1')}
+          />
+          <Typography variant="h3" sx={{ alignSelf: 'center' }}>+</Typography>
+          <ClickableNumber
+            number={problem.num2}
+            isSelectable={state.number2.isSelectable}
+            isDecomposed={state.number2.isDecomposed}
+            onClick={() => handleNumberClick('number2')}
+          />
+        </Box>
       </Box>
 
-      {state.number1.isDecomposed && (
-        <Box sx={{ mb: 3 }}>
-          <NumberDecomposition
-            number={problem.num1}
-            tens={state.number1.tens}
-            units={state.number1.units}
-          />
+      <Divider sx={{ my: 3 }} />
+
+      {/* Layer 2: Decomposition */}
+      {(state.number1.isDecomposed || state.number2.isDecomposed) && (
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h6" color="text.secondary" gutterBottom>
+            Layer 2: Break Down Numbers
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {state.number1.isDecomposed && (
+              <NumberDecomposition
+                number={problem.num1}
+                tens={state.number1.tens}
+                units={state.number1.units}
+              />
+            )}
+            {state.number2.isDecomposed && (
+              <NumberDecomposition
+                number={problem.num2}
+                tens={state.number2.tens}
+                units={state.number2.units}
+              />
+            )}
+          </Box>
         </Box>
       )}
 
-      {state.number2.isDecomposed && (
-        <Box sx={{ mb: 3 }}>
-          <NumberDecomposition
-            number={problem.num2}
-            tens={state.number2.tens}
-            units={state.number2.units}
-          />
-        </Box>
-      )}
+      {(state.number1.isDecomposed || state.number2.isDecomposed) && <Divider sx={{ my: 3 }} />}
 
+      {/* Layer 3: Answer Choices */}
       {state.showFinalChoices && (
-        <MultipleChoiceAnswer
-          correctAnswer={problem.expectedAnswer}
-          onAnswerSelected={handleAnswerSelected}
-        />
+        <Box>
+          <Typography variant="h6" color="text.secondary" gutterBottom>
+            Layer 3: Choose Answer
+          </Typography>
+          <MultipleChoiceAnswer
+            correctAnswer={problem.expectedAnswer}
+            onAnswerSelected={handleAnswerSelected}
+          />
+        </Box>
       )}
     </Paper>
   );
